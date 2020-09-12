@@ -20,7 +20,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// Note that this is consistent with UML guideline but results in a necessary change of Add Ice to Hold Ice 
         /// which is contradictory to assignment description
         /// </summary>
-        public bool Ice { get; set; } = true;
+        public bool Ice { get; set; } = false;
 
         /// <summary>
         /// Property holding the size of the drink
@@ -65,7 +65,7 @@ namespace BleakwindBuffet.Data.Drinks
             get
             {
                 List<string> instructions = new List<string>();
-                if (Ice) instructions.Add("Hold ice");
+                if (Ice) instructions.Add("Add ice");
                 return instructions;
             }
 
