@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Object Class representing Sailor Soda with all necessary properties for an accurate order
     /// </summary>
-    public class SailorSoda
+    public class SailorSoda : Drink , IOrderItem
     {
         /// <summary>
         /// Property holding the flavor of the soda
@@ -25,15 +25,11 @@ namespace BleakwindBuffet.Data.Drinks
         /// </summary>
         public bool Ice { get; set; } = true;
 
-        /// <summary>
-        /// Property holding the size of the drink
-        /// </summary>
-        public Size Size { get; set; } = Size.Small;
 
         /// <summary>
         /// Property to get the price of the drink based on size
         /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -47,7 +43,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// Property to get the calories of the drink based on size
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -61,7 +57,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// Special Instruction list property storing all applicable special instructions
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

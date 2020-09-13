@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Object Class representing Candlehearth Coffee with all necessary properties for an accurate order
     /// </summary>
-    public class CandlehearthCoffee
+    public class CandlehearthCoffee : Drink , IOrderItem
     {
         /// <summary>
         /// Property holding whether the drink has ice
@@ -30,15 +30,11 @@ namespace BleakwindBuffet.Data.Drinks
         /// </summary>
         public bool RoomForCream { get; set; } = false;
 
-        /// <summary>
-        /// Property holding the size of the drink
-        /// </summary>
-        public Size Size { get; set; } = Size.Small;
 
         /// <summary>
         /// Property to get the price of the drink based on size
         /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -52,7 +48,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// Property to get the calories of the drink based on size
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -66,7 +62,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// Special Instruction list property storing all applicable special instructions
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

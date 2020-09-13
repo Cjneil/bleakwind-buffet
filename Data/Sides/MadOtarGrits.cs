@@ -13,17 +13,13 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Object Class representing Mad Otar Grits with all necessary properties for an accurate order
     /// </summary>
-    public class MadOtarGrits
+    public class MadOtarGrits : Side , IOrderItem
     {
-        /// <summary>
-        /// Property holding the size of the side
-        /// </summary>
-        public Size Size { get; set; } = Size.Small;
 
         /// <summary>
         /// Property to get the price of the side based on size
         /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -37,7 +33,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <summary>
         /// Property to get the calories of the side based on size
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -51,7 +47,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <summary>
         /// Special Instruction list property storing all applicable special instructions
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

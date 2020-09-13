@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Object Class representing Warrior Water with all necessary properties for an accurate order
     /// </summary>
-    public class WarriorWater
+    public class WarriorWater : Drink , IOrderItem
     {
         /// <summary>
         /// Property holding whether the drink has ice
@@ -25,25 +25,21 @@ namespace BleakwindBuffet.Data.Drinks
         /// </summary>
         public bool Lemon { get; set; } = false;
 
-        /// <summary>
-        /// Property holding the size of the drink
-        /// </summary>
-        public Size Size { get; set; } = Size.Small;
 
         /// <summary>
         /// Property to get the price of the drink based on size
         /// </summary>
-        public double Price => 0;
+        public override double Price => 0;
 
         /// <summary>
         /// Property to get the calories of the drink based on size
         /// </summary>
-        public uint Calories => 0;
+        public override uint Calories => 0;
 
         /// <summary>
         /// Special Instruction list property storing all applicable special instructions
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
