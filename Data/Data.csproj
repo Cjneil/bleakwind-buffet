@@ -5,8 +5,4 @@
     <RootNamespace>BleakwindBuffet.Data</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
-
 </Project>
