@@ -12,7 +12,7 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Object Class representing a Thalmor Triple with all necessary properties for an accurate order
     /// </summary>
-    public class ThalmorTriple
+    public class ThalmorTriple : Entree , IOrderItem
     {
         /// <summary>
         /// Property storing whether entree has bacon
@@ -67,17 +67,17 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// price of the Thalmor Triple
         /// </summary>
-        public double Price => 8.32;
+        public override double Price => 8.32;
 
         /// <summary>
         /// Calories of a Thalmor Triple (too many)
         /// </summary>
-        public uint Calories => 943;
+        public override uint Calories => 943;
 
         /// <summary>
         /// Special Instruction list property storing all applicable special instructions
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

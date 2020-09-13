@@ -13,7 +13,19 @@ using BleakwindBuffet.Data.Drinks;
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
     public class MarkarthMilkTests
-    {
+    { 
+        [Fact]
+        public void ShouldBeADrink()
+        {
+            Assert.IsAssignableFrom<Drink>(new MarkarthMilk());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToIOrderItemInterface()
+        {
+            Assert.IsAssignableFrom<IOrderItem>(new MarkarthMilk());
+        }
+
         [Fact]
         public void ShouldNotIncludeIceByDefault()
         {

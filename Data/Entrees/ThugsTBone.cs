@@ -12,22 +12,22 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Object Class representing a Thugs T-Bone with all necessary properties for an accurate order
     /// </summary>
-    public class ThugsTBone
+    public class ThugsTBone : Entree, IOrderItem
     {
         /// <summary>
         /// price of the Thugs T-Bone
         /// </summary>
-        public double Price => 6.44;
+        public override double Price => 6.44;
 
         /// <summary>
         /// Calories of a Thugs T-Bone (if you thought the Triple was high you clearly haven't seen one of these bad boys)
         /// </summary>
-        public uint Calories => 982;
+        public override uint Calories => 982;
 
         /// <summary>
         /// Special Instruction list property storing all applicable special instructions
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {
