@@ -8,6 +8,7 @@ using Xunit;
 
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -23,6 +24,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new GardenOrcOmelette());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new GardenOrcOmelette());
         }
 
         [Fact]
@@ -64,6 +71,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void BroccoliChangeShouldTriggerPropertyChangedBroccooliAndSpecialInstructions()
+        {
+            var GO = new GardenOrcOmelette();
+            Assert.PropertyChanged(GO, "Broccoli", () => {
+                GO.Broccoli = false;
+            });
+            Assert.PropertyChanged(GO, "SpecialInstructions", () => {
+                GO.Broccoli = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetMushrooms()
         {
             var GO = new GardenOrcOmelette();
@@ -71,6 +90,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.True(GO.Mushrooms);
             GO.Mushrooms = false;
             Assert.False(GO.Mushrooms);
+        }
+
+        [Fact]
+        public void MushroomsChangeShouldTriggerPropertyChangedMushroomsAndSpecialInstructions()
+        {
+            var GO = new GardenOrcOmelette();
+            Assert.PropertyChanged(GO, "Mushrooms", () => {
+                GO.Mushrooms = false;
+            });
+            Assert.PropertyChanged(GO, "SpecialInstructions", () => {
+                GO.Mushrooms = true;
+            });
         }
 
         [Fact]
@@ -84,6 +115,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void TomatoChangeShouldTriggerPropertyChangedTomatoAndSpecialInstructions()
+        {
+            var GO = new GardenOrcOmelette();
+            Assert.PropertyChanged(GO, "Tomato", () => {
+                GO.Tomato = false;
+            });
+            Assert.PropertyChanged(GO, "SpecialInstructions", () => {
+                GO.Tomato = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetCheddar()
         {
             var GO = new GardenOrcOmelette();
@@ -91,6 +134,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.True(GO.Cheddar);
             GO.Cheddar = false;
             Assert.False(GO.Cheddar);
+        }
+
+        [Fact]
+        public void CheddarChangeShouldTriggerPropertyChangedCheddarAndSpecialInstructions()
+        {
+            var GO = new GardenOrcOmelette();
+            Assert.PropertyChanged(GO, "Cheddar", () => {
+                GO.Cheddar = false;
+            });
+            Assert.PropertyChanged(GO, "SpecialInstructions", () => {
+                GO.Cheddar = true;
+            });
         }
 
         [Fact]

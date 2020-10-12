@@ -15,10 +15,23 @@ namespace BleakwindBuffet.Data.Drinks
     /// </summary>
     public class MarkarthMilk : Drink, IOrderItem
     {
+        private bool ice = false;
         /// <summary>
         /// Property holding whether the drink has ice
         /// </summary>
-        public bool Ice { get; set; } = false;
+        public bool Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+                NotifyPropertyChanged("Ice");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
 
         /// <summary>

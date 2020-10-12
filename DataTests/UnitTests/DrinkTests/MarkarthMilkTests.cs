@@ -9,6 +9,7 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Drinks;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
@@ -24,6 +25,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new MarkarthMilk());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new MarkarthMilk());
         }
 
         [Fact]
@@ -113,6 +120,58 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
                 Size = size
             };
             Assert.Equal(name, MK.ToString());
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedSize()
+        {
+            var MK = new MarkarthMilk();
+            Assert.PropertyChanged(MK, "Size", () => {
+                MK.Size = Size.Medium;
+            });
+        }
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedPrice()
+        {
+            var MK = new MarkarthMilk();
+            Assert.PropertyChanged(MK, "Price", () => {
+                MK.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedCalories()
+        {
+            var MK = new MarkarthMilk();
+            Assert.PropertyChanged(MK, "Calories", () => {
+                MK.Size = Size.Medium;
+            });
+        }
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedToString()
+        {
+            var MK = new MarkarthMilk();
+            Assert.PropertyChanged(MK, "ToString", () => {
+                MK.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void IceChangeShouldTriggerPropertyChangedIce()
+        {
+            var MK = new MarkarthMilk();
+            Assert.PropertyChanged(MK, "Ice", () => {
+                MK.Ice = true;
+            });
+        }
+
+        [Fact]
+        public void IceChangeShouldTriggerPropertyChangedSpecialInstructions()
+        {
+            var MK = new MarkarthMilk();
+            Assert.PropertyChanged(MK, "SpecialInstructions", () => {
+                MK.Ice = true;
+            });
         }
     }
 }

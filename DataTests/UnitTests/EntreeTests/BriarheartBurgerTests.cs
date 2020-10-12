@@ -8,6 +8,7 @@ using Xunit;
 
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -23,6 +24,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new BriarheartBurger());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new BriarheartBurger());
         }
 
         [Fact]
@@ -71,6 +78,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void BunChangeShouldTriggerPropertyChangedBunAndSpecialInstructions()
+        {
+            var BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Bun", () => {
+                BB.Bun = false;
+            });
+            Assert.PropertyChanged(BB, "SpecialInstructions", () => {
+                BB.Bun = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetKetchup()
         {
             var BB = new BriarheartBurger();
@@ -78,6 +97,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.True(BB.Ketchup);
             BB.Ketchup = false;
             Assert.False(BB.Ketchup);
+        }
+
+        [Fact]
+        public void KetchupChangeShouldTriggerPropertyChangedKetchupAndSpecialInstructions()
+        {
+            var BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Ketchup", () => {
+                BB.Ketchup = false;
+            });
+            Assert.PropertyChanged(BB, "SpecialInstructions", () => {
+                BB.Ketchup = true;
+            });
         }
 
         [Fact]
@@ -91,6 +122,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void MustardChangeShouldTriggerPropertyChangedMustardAndSpecialInstructions()
+        {
+            var BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Mustard", () => {
+                BB.Mustard = false;
+            });
+            Assert.PropertyChanged(BB, "SpecialInstructions", () => {
+                BB.Mustard = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetPickle()
         {
             var BB = new BriarheartBurger();
@@ -101,6 +144,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void PickleChangeShouldTriggerPropertyChangedPickleAndSpecialInstructions()
+        {
+            var BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Pickle", () => {
+                BB.Pickle = false;
+            });
+            Assert.PropertyChanged(BB, "SpecialInstructions", () => {
+                BB.Pickle = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetCheese()
         {
             var BB = new BriarheartBurger();
@@ -108,6 +163,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.True(BB.Cheese);
             BB.Cheese = false;
             Assert.False(BB.Cheese);
+        }
+
+        [Fact]
+        public void CheeseChangeShouldTriggerPropertyChangedCheeseAndSpecialInstructions()
+        {
+            var BB = new BriarheartBurger();
+            Assert.PropertyChanged(BB, "Cheese", () => {
+                BB.Cheese = false;
+            });
+            Assert.PropertyChanged(BB, "SpecialInstructions", () => {
+                BB.Cheese = true;
+            });
         }
 
         [Fact]
@@ -153,5 +220,8 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             var BB = new BriarheartBurger();
             Assert.Equal("Briarheart Burger", BB.ToString());
         }
+
+
+
     }
 }

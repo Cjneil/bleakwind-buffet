@@ -3,6 +3,7 @@
  * Class name: WarriorWaterMenu.xaml.cs
  * Purpose: Class used to represent the menu for customizing Warrior Water
  */
+using BleakwindBuffet.Data.Drinks;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,12 +36,21 @@ namespace PointOfSale
         {
             InitializeComponent();
             Ancestor = ancestor;
+            this.DataContext = new WarriorWater();
         }
 
         /// <summary>
         /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
         /// </summary>
         void CompleteClick(object sender, RoutedEventArgs e)
+        {
+            Ancestor.SwitchMenu("ItemMenu");
+        }
+
+        /// <summary>
+        /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
+        /// </summary>
+        private void CancelClick(object sender, RoutedEventArgs e)
         {
             Ancestor.SwitchMenu("ItemMenu");
         }

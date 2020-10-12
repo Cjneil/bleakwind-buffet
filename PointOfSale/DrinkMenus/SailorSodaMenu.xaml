@@ -12,14 +12,15 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBlock">
@@ -35,6 +36,14 @@
                 <Setter Property="Background" Value="#009E73"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style>
+            <Style x:Key="Scale" TargetType="{x:Type Control}">
+                <Setter Property="Margin" Value="30"/>
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="3" ScaleY="3"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </Grid.Resources>
         <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
             <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="30" Foreground="White" Background="#009E73" >
@@ -47,42 +56,39 @@
                 Size:
         </TextBlock>
 
-        <WrapPanel Grid.Row="2">
-            <Button Name="smallButton" Background="#009E73">
-                Small
-            </Button>
-            <Button Name="mediumButton" Background="#D55E00">
-                Medium
-            </Button>
-            <Button Name="largeButton" Background="#D55E00">
-                Large
-            </Button>
-        </WrapPanel>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width=".6*"/>
+                <ColumnDefinition Width=".5*"/>
+            </Grid.ColumnDefinitions>
+
+            <RadioButton Name="smallButton" GroupName="Size" Content="Small" IsChecked="{Binding Path = Size}" Grid.Column="0" Style="{StaticResource Scale}"/>
+            <RadioButton Name="mediumButton" GroupName="Size" Content ="Medium" IsChecked="{Binding Path=Size}" Grid.Column="1" Style="{StaticResource Scale}"/>
+            <RadioButton  Name="largeButton" GroupName="Size" Content ="Large" IsChecked="{Binding Path=Size}" Grid.Column="2" Style="{StaticResource Scale}"/>
+        </Grid>
         
         <TextBlock Grid.Row="3">
                 Flavor:
         </TextBlock>
 
-        <WrapPanel Grid.Row="4">
-            <Button Name="blackberryButton" Background="#D55E00">
-                Blackberry
-            </Button>
-            <Button Name="cherryButton">
-                Cherry
-            </Button>
-            <Button Name="grapefruitButton" Background="#D55E00">
-                Grapefruit
-            </Button>
-            <Button Name="lemonButton" Background="#D55E00">
-                Lemon
-            </Button>
-            <Button Name="peachButton" Background="#D55E00">
-                Peach
-            </Button>
-            <Button Name="watermelonButton" Background="#D55E00">
-                Watermelon
-            </Button>
-        </WrapPanel>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width=".6*"/>
+                <ColumnDefinition Width=".5*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <RadioButton Name="blackberryButton" GroupName="Flavor" Content="Blackberry" IsChecked="{Binding Path = Flavor, Mode=TwoWay}" Grid.Column="0" Style="{StaticResource Scale}"/>
+            <RadioButton Name="cherryButton" GroupName="Flavor" Content="Cherry" IsChecked="{Binding Path = Flavor, Mode=TwoWay}" Grid.Column="1" Style="{StaticResource Scale}"/>
+            <RadioButton Name="grapefruitButton" GroupName="Flavor" Content="Grapefruit" IsChecked="{Binding Path = Flavor, Mode=TwoWay}" Grid.Column="2" Style="{StaticResource Scale}"/>
+            <RadioButton Name="lemonButton" GroupName="Flavor" Content="Lemon" IsChecked="{Binding Path = Flavor, Mode=TwoWay}" Grid.Column="0" Grid.Row="1" Style="{StaticResource Scale}"/>
+            <RadioButton Name="peachButton" GroupName="Flavor" Content="Peach" IsChecked="{Binding Path = Flavor, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Style="{StaticResource Scale}"/>
+            <RadioButton Name="watermelonButton" GroupName="Flavor" Content="Watermelon" IsChecked="{Binding Path = Flavor, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Style="{StaticResource Scale}"/>
+        </Grid>
 
         <!--Label plus toggleable buttons for use in adding/removing special instructions
          for the order-->
@@ -91,12 +97,14 @@
         </TextBlock>
 
         <WrapPanel Grid.Row="6">
-            <Button Name="iceButton">
-                Ice : Yes
-            </Button>
+            <CheckBox Name="iceToggle" Content="Ice" IsChecked="{Binding Path=Ice, Mode=TwoWay}" Style="{StaticResource Scale}"/>
         </WrapPanel>
         <Button Grid.Row="7" Click="CompleteClick" Name="completeButton">
-            Complete Order
+            Complete Item
+        </Button>
+        
+        <Button Grid.Row="8" Click="CancelClick" Name="cancelButton" Background="#D55E00">
+            Cancel Item
         </Button>
             
     </Grid>

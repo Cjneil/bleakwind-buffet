@@ -12,16 +12,17 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="TextAlignment" Value="Left"/>
-                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontSize" Value="40"/>
             </Style>
             <Style TargetType="Button">
                 <Setter Property="FontSize" Value="30"/>
@@ -31,47 +32,53 @@
                 <Setter Property="Background" Value="#009E73"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style>
+            <Style x:Key="Scale" TargetType="{x:Type Control}">
+                <Setter Property="Margin" Value="30"/>
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="3" ScaleY="3"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </Grid.Resources>
         <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
-            <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="30" Foreground="White" Background="#009E73" >
-                    Customize a Double Draugr Burger
+            <TextBlock FontWeight="Bold" TextAlignment="Center" Foreground="White" Background="#009E73" >
+                    Double Draugr Burger
             </TextBlock>
         </Border>
 
         <!--Label plus toggleable buttons for use in adding/removing special instructions
          for the order-->
         <TextBlock Grid.Row="1">
-                Special Instructions (Yes/No states current choice):
+                Special Instructions:
         </TextBlock>
 
-        <WrapPanel Grid.Row="2">
-            <Button Name="bunButton">
-                Bun : Yes
-            </Button>
-            <Button Name="cheeseButton">
-                Cheese : Yes
-            </Button>
-            <Button Name="ketchupButton">
-                Ketchup : Yes
-            </Button>
-            <Button Name="lettuceButton">
-                Lettuce : Yes
-            </Button>
-            <Button Name="Mayo">
-                Mayo : Yes
-            </Button>
-            <Button Name="MustardButton">
-                Mustard : Yes
-            </Button>
-            <Button Name="pickleButton">
-                Pickle : Yes
-            </Button>
-            <Button Name="tomatoButton">
-                Tomato : Yes
-            </Button>
-        </WrapPanel>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <CheckBox Name="bunToggle" Content="Bun" Grid.Column="0" IsChecked="{Binding Path=Bun, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="cheeseToggle" Content="Cheese" Grid.Column="1" IsChecked="{Binding Path=Cheese, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="ketchupToggle" Content="Ketchup" Grid.Column="2" IsChecked="{Binding Path=Ketchup, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="mustardToggle" Content="Mustard" Grid.Column="3" IsChecked="{Binding Path=Mustard, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="pickleToggle" Content="Pickle" Grid.Column="0" Grid.Row="1" IsChecked="{Binding Path=Pickle, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="lettuceToggle" Content="Lettuce" Grid.Column="1" Grid.Row="1" IsChecked="{Binding Path=Lettuce, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="mayoToggle" Content="Mayo" Grid.Column="2" Grid.Row="1" IsChecked="{Binding Path=Mayo, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="tomatoToggle" Content="Tomato" Grid.Column="3" Grid.Row="1" IsChecked="{Binding Path=Tomato, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+        </Grid>
         <Button Grid.Row="3" Click="CompleteClick" Name="completeButton">
-            Complete Order
+            Complete Item
+        </Button>
+
+        <Button Grid.Row="4" Click="CancelClick" Name="cancelButton" Background="#D55E00">
+            Cancel Item
         </Button>
     </Grid>
 </UserControl>

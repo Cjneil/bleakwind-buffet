@@ -14,30 +14,94 @@ namespace BleakwindBuffet.Data.Entrees
     /// </summary>
     public class BriarheartBurger : Entree , IOrderItem
     {
+
+        private bool bun = true;
         /// <summary>
         /// Property storing whether burger has a bun
         /// </summary>
-        public bool Bun { get; set; } = true;
+        public bool Bun
+        {
+            get
+            {
+                return bun;
+            }
+            set
+            {
+                bun = value;
+                NotifyPropertyChanged("Bun");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool cheese = true;
         /// <summary>
         /// Property storing whether burger has cheese
         /// </summary>
-        public bool Cheese { get; set; } = true;
+        public bool Cheese
+        {
+            get
+            {
+                return cheese;
+            }
+            set
+            {
+                cheese = value;
+                NotifyPropertyChanged("Cheese");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+
+        private bool ketchup = true;
         /// <summary>
         /// Property storing whether burger has ketchup
         /// </summary>
-        public bool Ketchup { get; set; } = true;
+        public bool Ketchup {
+            get
+            {
+                return ketchup;
+            }
+            set
+            {
+                ketchup = value;
+                NotifyPropertyChanged("Ketchup");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool mustard = true;
         /// <summary>
         /// Property storing whether burger has mustard
         /// </summary>
-        public bool Mustard { get; set; } = true;
+        public bool Mustard {
+            get
+            {
+                return mustard;
+            }
+            set
+            {
+                mustard = value;
+                NotifyPropertyChanged("Mustard");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool pickle = true;
         /// <summary>
         /// Property storing whether burger has pickle
         /// </summary>
-        public bool Pickle { get; set; } = true;
+        public bool Pickle {
+            get
+            {
+                return pickle;
+            }
+            set
+            {
+                pickle = value;
+                NotifyPropertyChanged("Pickle");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
         /// <summary>
         /// price of the Briarheart Burger

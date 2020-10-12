@@ -26,7 +26,7 @@
             <Style TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="TextAlignment" Value="Left"/>
-                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontSize" Value="40"/>
             </Style>
             <Style TargetType="Button">
                 <Setter Property="FontSize" Value="30"/>
@@ -37,7 +37,7 @@
         </Grid.Resources>
         
         <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
-            <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="30" Foreground="White" Background="#009E73">
+            <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="50" Foreground="White" Background="#009E73">
                     Choose an item to add to order
             </TextBlock>
         </Border>
@@ -46,7 +46,17 @@
                 Entrees:
         </TextBlock>
 
-        <WrapPanel Grid.Row="2">
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Button Name="briarheartBurgerButton" Click="ItemSelectionClick" Grid.Row="0" Grid.Column="0">
                 Briarheart Burger
             </Button>
@@ -68,47 +78,63 @@
             <Button Name="thugsTBoneButton" Click="ItemSelectionClick" Grid.Row="1" Grid.Column="2">
                 Thugs T-Bone
             </Button>
-        </WrapPanel>
+        </Grid>
 
         <TextBlock Grid.Row="3">
                 Sides:
         </TextBlock>
 
-        <WrapPanel Grid.Row="4">
-            <Button Name="dragonbornWaffleFriesButton" Click="ItemSelectionClick">
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="dragonbornWaffleFriesButton" Click="ItemSelectionClick" Grid.Column="0">
                 Dragonborn Waffle Fries
             </Button>
-            <Button Name="friedMiraakButton" Click="ItemSelectionClick">
+            <Button Name="friedMiraakButton" Click="ItemSelectionClick" Grid.Column="1">
                 Fried Miraak
             </Button>
-            <Button Name="madOtarGritsButton" Click="ItemSelectionClick">
+                <Button Name="madOtarGritsButton" Click="ItemSelectionClick" Grid.Column="2">
                 Mad Otar Grits
             </Button>
-            <Button Name="vokunSaladButton" Click="ItemSelectionClick">
+                <Button Name="vokunSaladButton" Click="ItemSelectionClick" Grid.Column="3">
                 Vokun Salad
             </Button>
-        </WrapPanel>
+        </Grid>
 
         <TextBlock Grid.Row="5">
                 Drinks:
         </TextBlock>
 
-        <WrapPanel Grid.Row="6" Grid.IsSharedSizeScope="True">
-            <Button Name="aretinoAppleJuiceButton" Click="ItemSelectionClick">
+        <Grid Grid.Row="6" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Name="aretinoAppleJuiceButton" Click="ItemSelectionClick" Grid.Column="0">
                 Aretino Apple Juice
             </Button>
-            <Button Name="candlehearthCoffeeButton" Click="ItemSelectionClick">
+            <Button Name="candlehearthCoffeeButton" Click="ItemSelectionClick" Grid.Column="1">
                 Candlehearth Coffee
             </Button>
-            <Button Name="markarthMilkButton" Click="ItemSelectionClick">
+            <Button Name="markarthMilkButton" Click="ItemSelectionClick" Grid.Column="2">
                 Markarth Milk
             </Button>
-            <Button Name="sailorSodaButton" Click="ItemSelectionClick">
+            <Button Name="sailorSodaButton" Click="ItemSelectionClick" Grid.Column="3">
                 Sailor Soda
             </Button>
-            <Button Name="warriorWaterButton" Click="ItemSelectionClick">
+            <Button Name="warriorWaterButton" Click="ItemSelectionClick" Grid.Row="1">
                 Warrior Water
             </Button>
-        </WrapPanel>
+        </Grid>
     </Grid>
 </UserControl>

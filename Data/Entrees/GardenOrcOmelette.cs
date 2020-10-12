@@ -14,25 +14,77 @@ namespace BleakwindBuffet.Data.Entrees
     /// </summary>
     public class GardenOrcOmelette : Entree, IOrderItem
     {
+        private bool broccoli = true;
         /// <summary>
         /// Property storing whether entree has a broccoli
         /// </summary>
-        public bool Broccoli { get; set; } = true;
+        public bool Broccoli
+        {
+            get
+            {
+                return broccoli;
+            }
+            set
+            {
+                broccoli = value;
+                NotifyPropertyChanged("Broccoli");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool cheddar = true;
         /// <summary>
         /// Property storing whether entree has cheddar
         /// </summary>
-        public bool Cheddar { get; set; } = true;
+        public bool Cheddar
+        {
+            get
+            {
+                return cheddar;
+            }
+            set
+            {
+                cheddar = value;
+                NotifyPropertyChanged("Cheddar");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool mushrooms = true;
         /// <summary>
         /// Property storing whether entree has mushrooms
         /// </summary>
-        public bool Mushrooms { get; set; } = true;
+        public bool Mushrooms
+        {
+            get
+            {
+                return mushrooms;
+            }
+            set
+            {
+                mushrooms = value;
+                NotifyPropertyChanged("Mushrooms");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool tomato = true;
         /// <summary>
         /// Property storing whether entree has tomato
         /// </summary>
-        public bool Tomato { get; set; } = true;
+        public bool Tomato
+        {
+            get
+            {
+                return tomato;
+            }
+            set
+            {
+                tomato = value;
+                NotifyPropertyChanged("Tomato");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
         /// <summary>
         /// price of the Garden Orc Omelette
