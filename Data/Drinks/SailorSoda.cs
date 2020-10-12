@@ -16,14 +16,46 @@ namespace BleakwindBuffet.Data.Drinks
     public class SailorSoda : Drink , IOrderItem
     {
         /// <summary>
+        /// Private backing variable for Flavor
+        /// </summary>
+        private SodaFlavor flavor = SodaFlavor.Cherry;
+        /// <summary>
         /// Property holding the flavor of the soda
         /// </summary>
-        public SodaFlavor Flavor { get; set; } = SodaFlavor.Cherry;
+        public SodaFlavor Flavor
+        {
+            get
+            {
+                return flavor;
+            }
+            set
+            {
+                flavor = value;
+                NotifyPropertyChanged("Flavor");
+                NotifyPropertyChanged("ToString");
+            }
+        }
 
+        /// <summary>
+        /// Private backing variable for Ice
+        /// </summary>
+        private bool ice = true;
         /// <summary>
         /// Property holding whether the drink has ice
         /// </summary>
-        public bool Ice { get; set; } = true;
+        public bool Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+                NotifyPropertyChanged("Ice");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
 
         /// <summary>

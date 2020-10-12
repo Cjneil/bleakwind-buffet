@@ -9,6 +9,7 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Sides;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
@@ -24,6 +25,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new VokunSalad());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new VokunSalad());
         }
 
         [Fact]
@@ -89,6 +96,42 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
                 Size = size
             };
             Assert.Equal(name, VS.ToString());
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedSize()
+        {
+            var VS = new VokunSalad();
+            Assert.PropertyChanged(VS, "Size", () => {
+                VS.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedPrice()
+        {
+            var VS = new VokunSalad();
+            Assert.PropertyChanged(VS, "Price", () => {
+                VS.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedCalories()
+        {
+            var VS = new VokunSalad();
+            Assert.PropertyChanged(VS, "Calories", () => {
+                VS.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedToString()
+        {
+            var VS = new VokunSalad();
+            Assert.PropertyChanged(VS, "ToString", () => {
+                VS.Size = Size.Medium;
+            });
         }
     }
 }

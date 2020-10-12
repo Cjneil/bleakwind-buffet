@@ -8,6 +8,7 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Drinks;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
@@ -23,6 +24,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new WarriorWater());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new WarriorWater());
         }
 
         [Fact]
@@ -133,6 +140,60 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
                 Size = size
             };
             Assert.Equal(name, WW.ToString());
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedSize()
+        {
+            var WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "Size", () => {
+                WW.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedToString()
+        {
+            var WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "ToString", () => {
+                WW.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void IceChangeShouldTriggerPropertyChangedIce()
+        {
+            var WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "Ice", () => {
+                WW.Ice = true;
+            });
+        }
+
+        [Fact]
+        public void IceChangeShouldTriggerPropertyChangedSpecialInstructions()
+        {
+            var WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "SpecialInstructions", () => {
+                WW.Ice = true;
+            });
+        }
+
+        [Fact]
+        public void LemonChangeShouldTriggerPropertyChangedLemon()
+        {
+            var WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "Lemon", () => {
+                WW.Lemon = true;
+            });
+        }
+
+        [Fact]
+        public void LemonChangeShouldTriggerPropertyChangedSpecialInstructions()
+        {
+            var WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "SpecialInstructions", () => {
+                WW.Lemon = true;
+            });
         }
     }
 }

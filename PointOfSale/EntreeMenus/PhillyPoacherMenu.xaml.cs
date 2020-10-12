@@ -3,6 +3,7 @@
  * Class name: PhillyPoacherMenu.xaml.cs
  * Purpose: Class used to represent the menu for customizing Philly Poacher
  */
+using BleakwindBuffet.Data.Entrees;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,12 +36,21 @@ namespace PointOfSale
         {
             InitializeComponent();
             Ancestor = ancestor;
+            this.DataContext = new PhillyPoacher();
         }
 
         /// <summary>
         /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
         /// </summary>
         void CompleteClick(object sender, RoutedEventArgs e)
+        {
+            Ancestor.SwitchMenu("ItemMenu");
+        }
+
+        /// <summary>
+        /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
+        /// </summary>
+        private void CancelClick(object sender, RoutedEventArgs e)
         {
             Ancestor.SwitchMenu("ItemMenu");
         }

@@ -8,6 +8,7 @@ using Xunit;
 
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -23,6 +24,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new PhillyPoacher());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new PhillyPoacher());
         }
 
         [Fact]
@@ -57,6 +64,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void SirloinChangeShouldTriggerPropertyChangedSirloinAndSpecialInstructions()
+        {
+            var PO = new PhillyPoacher();
+            Assert.PropertyChanged(PO, "Sirloin", () => {
+                PO.Sirloin = false;
+            });
+            Assert.PropertyChanged(PO, "SpecialInstructions", () => {
+                PO.Sirloin = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetOnions()
         {
             var PO = new PhillyPoacher();
@@ -67,6 +86,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void OnionChangeShouldTriggerPropertyChangedOnionAndSpecialInstructions()
+        {
+            var PO = new PhillyPoacher();
+            Assert.PropertyChanged(PO, "Onion", () => {
+                PO.Onion = false;
+            });
+            Assert.PropertyChanged(PO, "SpecialInstructions", () => {
+                PO.Onion = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetRoll()
         {
             var PO = new PhillyPoacher();
@@ -74,6 +105,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.True(PO.Roll);
             PO.Roll = false;
             Assert.False(PO.Roll);
+        }
+
+        [Fact]
+        public void RollChangeShouldTriggerPropertyChangedRollAndSpecialInstructions()
+        {
+            var PO = new PhillyPoacher();
+            Assert.PropertyChanged(PO, "Roll", () => {
+                PO.Roll = false;
+            });
+            Assert.PropertyChanged(PO, "SpecialInstructions", () => {
+                PO.Roll = true;
+            });
         }
 
         [Fact]

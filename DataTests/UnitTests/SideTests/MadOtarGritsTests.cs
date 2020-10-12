@@ -9,6 +9,7 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Sides;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
@@ -24,6 +25,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new MadOtarGrits());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new MadOtarGrits());
         }
 
         [Fact]
@@ -89,6 +96,42 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
                 Size = size
             };
             Assert.Equal(name, OG.ToString());
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedSize()
+        {
+            var OG = new MadOtarGrits();
+            Assert.PropertyChanged(OG, "Size", () => {
+                OG.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedPrice()
+        {
+            var OG = new MadOtarGrits();
+            Assert.PropertyChanged(OG, "Price", () => {
+                OG.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedCalories()
+        {
+            var OG = new MadOtarGrits();
+            Assert.PropertyChanged(OG, "Calories", () => {
+                OG.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedToString()
+        {
+            var OG = new MadOtarGrits();
+            Assert.PropertyChanged(OG, "ToString", () => {
+                OG.Size = Size.Medium;
+            });
         }
     }
 }

@@ -15,15 +15,41 @@ namespace BleakwindBuffet.Data.Drinks
     /// </summary>
     public class WarriorWater : Drink , IOrderItem
     {
+        private bool ice = true;
         /// <summary>
         /// Property holding whether the drink has ice
         /// </summary>
-        public bool Ice { get; set; } = true;
+        public bool Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+                NotifyPropertyChanged("Ice");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool lemon = false;
         /// <summary>
         /// Property holding whether the water should have a lemon
         /// </summary>
-        public bool Lemon { get; set; } = false;
+        public bool Lemon
+        {
+            get
+            {
+                return lemon;
+            }
+            set
+            {
+                lemon = value;
+                NotifyPropertyChanged("Lemon");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
 
         /// <summary>

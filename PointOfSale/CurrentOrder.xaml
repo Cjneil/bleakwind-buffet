@@ -11,9 +11,17 @@
              xmlns:local="clr-namespace:PointOfSale"
              mc:Ignorable="d">
     <Grid>
-        <StackPanel>
-            <TextBlock Text="Current Order" FontSize="30" TextAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
+            <TextBlock Text="Current Order" FontSize="50" TextAlignment="Center" FontWeight="Bold" Background="#009E73" Foreground="White"/>
+        </Border>
+
+        <ScrollViewer Grid.Row="1">
             <ListView Name="orderList"/>
-        </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

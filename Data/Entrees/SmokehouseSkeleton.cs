@@ -14,25 +14,77 @@ namespace BleakwindBuffet.Data.Entrees
     /// </summary>
     public class SmokehouseSkeleton : Entree, IOrderItem
     {
+        private bool egg = true;
         /// <summary>
         /// Property storing whether entree has a egg
         /// </summary>
-        public bool Egg { get; set; } = true;
+        public bool Egg
+        {
+            get
+            {
+                return egg;
+            }
+            set
+            {
+                egg = value;
+                NotifyPropertyChanged("Egg");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool hashbrowns = true;
         /// <summary>
         /// Property storing whether entree has hash browns
         /// </summary>
-        public bool HashBrowns { get; set; } = true;
+        public bool HashBrowns
+        {
+            get
+            {
+                return hashbrowns;
+            }
+            set
+            {
+                hashbrowns = value;
+                NotifyPropertyChanged("HashBrowns");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool pancake = true;
         /// <summary>
         /// Property storing whether entree has pancakes
         /// </summary>
-        public bool Pancake { get; set; } = true;
+        public bool Pancake
+        {
+            get
+            {
+                return pancake;
+            }
+            set
+            {
+                pancake = value;
+                NotifyPropertyChanged("Pancake");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool sausagelink = true;
         /// <summary>
         /// Property storing whether entree has sausage links
         /// </summary>
-        public bool SausageLink { get; set; } = true;
+        public bool SausageLink
+        {
+            get
+            {
+                return sausagelink;
+            }
+            set
+            {
+                sausagelink = value;
+                NotifyPropertyChanged("SausageLink");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
         /// <summary>
         /// price of the Smokehouse Skeleton combo

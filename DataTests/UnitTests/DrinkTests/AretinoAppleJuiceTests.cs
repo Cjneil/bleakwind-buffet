@@ -9,6 +9,7 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Drinks;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
 {
@@ -24,6 +25,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new AretinoAppleJuice());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new AretinoAppleJuice());
         }
 
         [Fact]
@@ -113,6 +120,58 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
                 Size = size
             };
             Assert.Equal(name, AJ.ToString());
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedSize()
+        {
+            var AJ = new AretinoAppleJuice();
+            Assert.PropertyChanged(AJ, "Size", () => {
+                AJ.Size = Size.Medium;
+            });
+        }
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedPrice()
+        {
+            var AJ = new AretinoAppleJuice();
+            Assert.PropertyChanged(AJ, "Price", () => {
+                AJ.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedCalories()
+        {
+            var AJ = new AretinoAppleJuice();
+            Assert.PropertyChanged(AJ, "Calories", () => {
+                AJ.Size = Size.Medium;
+            });
+        }
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedToString()
+        {
+            var AJ = new AretinoAppleJuice();
+            Assert.PropertyChanged(AJ, "ToString", () => {
+                AJ.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void IceChangeShouldTriggerPropertyChangedIce()
+        {
+            var AJ = new AretinoAppleJuice();
+            Assert.PropertyChanged(AJ, "Ice", () => {
+                AJ.Ice = true;
+            });
+        }
+
+        [Fact]
+        public void IceChangeShouldTriggerPropertyChangedSpecialInstructions()
+        {
+            var AJ = new AretinoAppleJuice();
+            Assert.PropertyChanged(AJ, "SpecialInstructions", () => {
+                AJ.Ice = true;
+            });
         }
     }
 }

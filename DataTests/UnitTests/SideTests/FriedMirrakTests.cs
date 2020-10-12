@@ -9,6 +9,7 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Sides;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
@@ -24,6 +25,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new FriedMiraak());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new FriedMiraak());
         }
 
         [Fact]
@@ -89,6 +96,42 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
                 Size = size
             };
             Assert.Equal(name, FM.ToString());
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedSize()
+        {
+            var FM = new FriedMiraak();
+            Assert.PropertyChanged(FM, "Size", () => {
+                FM.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedPrice()
+        {
+            var FM = new FriedMiraak();
+            Assert.PropertyChanged(FM, "Price", () => {
+                FM.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedCalories()
+        {
+            var FM = new FriedMiraak();
+            Assert.PropertyChanged(FM, "Calories", () => {
+                FM.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedToString()
+        {
+            var FM = new FriedMiraak();
+            Assert.PropertyChanged(FM, "ToString", () => {
+                FM.Size = Size.Medium;
+            });
         }
     }
 }

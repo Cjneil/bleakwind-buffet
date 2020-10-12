@@ -14,20 +14,59 @@ namespace BleakwindBuffet.Data.Entrees
     /// </summary>
     public class PhillyPoacher : Entree, IOrderItem
     {
+        private bool onion = true;
         /// <summary>
         /// Property storing whether entree has onions
         /// </summary>
-        public bool Onion { get; set; } = true;
+        public bool Onion
+        {
+            get
+            {
+                return onion;
+            }
+            set
+            {
+                onion = value;
+                NotifyPropertyChanged("Onion");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool roll = true;
         /// <summary>
         /// Property storing whether entree uses roll
         /// </summary>
-        public bool Roll { get; set; } = true;
+        public bool Roll
+        {
+            get
+            {
+                return roll;
+            }
+            set
+            {
+                roll = value;
+                NotifyPropertyChanged("Roll");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
+        private bool sirloin = true;
         /// <summary>
         /// Property storing whether entree uses sirloin
         /// </summary>
-        public bool Sirloin { get; set; } = true;
+        public bool Sirloin
+        {
+            get
+            {
+                return sirloin;
+            }
+            set
+            {
+                sirloin = value;
+                NotifyPropertyChanged("Sirloin");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
         /// <summary>
         /// price of the Philly Poacher

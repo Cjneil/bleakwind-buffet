@@ -9,6 +9,7 @@ using Xunit;
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Sides;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
@@ -24,6 +25,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new DragonbornWaffleFries());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new DragonbornWaffleFries());
         }
 
         [Fact]
@@ -89,6 +96,40 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
                 Size = size
             };
             Assert.Equal(name, DW.ToString());
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedSize()
+        {
+            var db = new DragonbornWaffleFries();
+            Assert.PropertyChanged(db as Side, "Size", () => {
+                db.Size = Size.Medium;
+            });
+        }
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedPrice()
+        {
+            var db = new DragonbornWaffleFries();
+            Assert.PropertyChanged(db as Side, "Price", () => {
+                db.Size = Size.Medium;
+            });
+        }
+
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedCalories()
+        {
+            var db = new DragonbornWaffleFries();
+            Assert.PropertyChanged(db as Side, "Calories", () => {
+                db.Size = Size.Medium;
+            });
+        }
+        [Fact]
+        public void SizeChangeShouldTriggerPropertyChangedToString()
+        {
+            var db = new DragonbornWaffleFries();
+            Assert.PropertyChanged(db as Side, "ToString", () => {
+                db.Size = Size.Medium;
+            });
         }
     }
 }

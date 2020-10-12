@@ -15,20 +15,60 @@ namespace BleakwindBuffet.Data.Drinks
     /// </summary>
     public class CandlehearthCoffee : Drink , IOrderItem
     {
+        private bool ice = false;
         /// <summary>
         /// Property holding whether the drink has ice
         /// </summary>
-        public bool Ice { get; set; } = false;
-        
+        public bool Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+                NotifyPropertyChanged("Ice");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
+
+        private bool decaf = false;
         /// <summary>
         /// Property holding whether the coffee is decaf
         /// </summary>
-        public bool Decaf { get; set; } = false;
+        public bool Decaf
+        {
+            get
+            {
+                return decaf;
+            }
+            set
+            {
+                decaf = value;
+                NotifyPropertyChanged("Decaf");
+                NotifyPropertyChanged("SpecialInstructions");
+                NotifyPropertyChanged("ToString");
+            }
+        }
 
+        private bool roomForCream = false;
         /// <summary>
         /// Property holding whether to add cream to the coffee
         /// </summary>
-        public bool RoomForCream { get; set; } = false;
+        public bool RoomForCream
+        {
+            get
+            {
+                return roomForCream;
+            }
+            set
+            {
+                roomForCream = value;
+                NotifyPropertyChanged("RoomForCream");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
 
 
         /// <summary>

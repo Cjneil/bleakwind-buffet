@@ -8,6 +8,7 @@ using Xunit;
 
 using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
 {
@@ -23,6 +24,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         public void ShouldBeAssignableToIOrderItemInterface()
         {
             Assert.IsAssignableFrom<IOrderItem>(new DoubleDraugr());
+        }
+
+        [Fact]
+        public void ShouldBeAssignableToINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new DoubleDraugr());
         }
 
         [Fact]
@@ -92,6 +99,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void BunChangeShouldTriggerPropertyChangedBunAndSpecialInstructions()
+        {
+            var DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, "Bun", () => {
+                DD.Bun = false;
+            });
+            Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Bun = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetKetchup()
         {
             var DD = new DoubleDraugr();
@@ -99,6 +118,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.True(DD.Ketchup);
             DD.Ketchup = false;
             Assert.False(DD.Ketchup);
+        }
+
+        [Fact]
+        public void KetchupChangeShouldTriggerPropertyChangedKetchupAndSpecialInstructions()
+        {
+            var DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, "Ketchup", () => {
+                DD.Ketchup = false;
+            });
+            Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Ketchup = true;
+            });
         }
 
         [Fact]
@@ -112,6 +143,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void MustardChangeShouldTriggerPropertyChangedMustardAndSpecialInstructions()
+        {
+            var DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, "Mustard", () => {
+                DD.Mustard = false;
+            });
+            Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Mustard = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetPickle()
         {
             var DD = new DoubleDraugr();
@@ -119,6 +162,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.True(DD.Pickle);
             DD.Pickle = false;
             Assert.False(DD.Pickle);
+        }
+
+        [Fact]
+        public void PickleChangeShouldTriggerPropertyChangedPickleAndSpecialInstructions()
+        {
+            var DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, "Pickle", () => {
+                DD.Pickle = false;
+            });
+            Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Pickle = true;
+            });
         }
 
         [Fact]
@@ -132,6 +187,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void CheeseChangeShouldTriggerPropertyChangedCheeseAndSpecialInstructions()
+        {
+            var DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, "Cheese", () => {
+                DD.Cheese = false;
+            });
+            Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Cheese = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetTomato()
         {
             var DD = new DoubleDraugr();
@@ -139,6 +206,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.True(DD.Tomato);
             DD.Tomato = false;
             Assert.False(DD.Tomato);
+        }
+
+        [Fact]
+        public void TomatoChangeShouldTriggerPropertyChangedTomatoAndSpecialInstructions()
+        {
+            var DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, "Tomato", () => {
+                DD.Tomato = false;
+            });
+            Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Tomato = true;
+            });
         }
 
         [Fact]
@@ -152,6 +231,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
+        public void LettuceChangeShouldTriggerPropertyChangedLettuceAndSpecialInstructions()
+        {
+            var DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, "Lettuce", () => {
+                DD.Lettuce = false;
+            });
+            Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Lettuce = true;
+            });
+        }
+
+        [Fact]
         public void ShouldBeAbleToSetMayo()
         {
             var DD = new DoubleDraugr();
@@ -159,6 +250,18 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.True(DD.Mayo);
             DD.Mayo = false;
             Assert.False(DD.Mayo);
+        }
+
+        [Fact]
+        public void MayoChangeShouldTriggerPropertyChangedMayoAndSpecialInstructions()
+        {
+            var DD = new DoubleDraugr();
+            Assert.PropertyChanged(DD, "Mayo", () => {
+                DD.Mayo = false;
+            });
+            Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Mayo = true;
+            });
         }
 
         [Fact]

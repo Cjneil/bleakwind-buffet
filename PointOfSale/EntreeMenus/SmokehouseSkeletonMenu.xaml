@@ -12,16 +12,17 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="TextAlignment" Value="Left"/>
-                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontSize" Value="40"/>
             </Style>
             <Style TargetType="Button">
                 <Setter Property="FontSize" Value="30"/>
@@ -31,35 +32,40 @@
                 <Setter Property="Background" Value="#009E73"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style>
+            <Style x:Key="Scale" TargetType="{x:Type Control}">
+                <Setter Property="Margin" Value="30"/>
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="3" ScaleY="3"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </Grid.Resources>
         <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
-            <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="30" Foreground="White" Background="#009E73" >
-                    Customize a Smokehouse Skeleton Breakfast Combo
+            <TextBlock FontWeight="Bold" TextAlignment="Center" Foreground="White" Background="#009E73" >
+                    Smokehouse Skeleton
             </TextBlock>
         </Border>
         
         <!--Label plus toggleable buttons for use in adding/removing special instructions
          for the order-->
         <TextBlock Grid.Row="1">
-                Special Instructions (Instruction : Yes/No):
+                Special Instructions:
         </TextBlock>
 
         <WrapPanel Grid.Row="2">
-            <Button Name="eggButton">
-                Egg : Yes
-            </Button>
-            <Button Name="hashBrownsButton">
-                Hash Browns : Yes
-            </Button>
-            <Button Name="pancakeButton">
-                Pancake : Yes
-            </Button>
-            <Button Name="sausageButton">
-                SausageLink : Yes
-            </Button>            
+            <CheckBox Name="eggToggle" Content="Egg" IsChecked="{Binding Path=Egg, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="hashBrownsToggle" Content="Hash Browns" IsChecked="{Binding Path=HashBrowns, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="pancakeToggle" Content="Pancake" IsChecked="{Binding Path=Pancake, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="sausageToggle" Content="SausageLink" IsChecked="{Binding Path=SausageLink, Mode=TwoWay}" Style="{StaticResource Scale}"/>
         </WrapPanel>
+        
         <Button Grid.Row="3" Click="CompleteClick" Name="completeButton">
-            Complete Order
+            Complete Item
+        </Button>
+
+        <Button Grid.Row="4" Click="CancelClick" Name="cancelButton" Background="#D55E00">
+            Cancel Item
         </Button>
     </Grid>
 </UserControl>

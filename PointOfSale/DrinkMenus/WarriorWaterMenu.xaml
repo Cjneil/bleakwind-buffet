@@ -12,12 +12,13 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.Resources>
             <Style TargetType="TextBlock">
@@ -33,6 +34,14 @@
                 <Setter Property="Background" Value="#009E73"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style>
+            <Style x:Key="Scale" TargetType="{x:Type Control}">
+                <Setter Property="Margin" Value="30"/>
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="3" ScaleY="3"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </Grid.Resources>
         <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
             <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="30" Foreground="White" Background="#009E73" TextWrapping="Wrap">
@@ -45,34 +54,34 @@
                 Size:
         </TextBlock>
 
-        <WrapPanel Grid.Row="2">
-            <Button Name="smallButton" Background="#009E73">
-                Small
-            </Button>
-            <Button Name="mediumButton" Background="#D55E00">
-                Medium
-            </Button>
-            <Button Name="largeButton" Background="#D55E00">
-                Large
-            </Button>
-        </WrapPanel>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".5*"/>
+                <ColumnDefinition Width=".6*"/>
+                <ColumnDefinition Width=".5*"/>
+            </Grid.ColumnDefinitions>
+
+            <RadioButton Name="smallButton" GroupName="Size" Content="Small" IsChecked="{Binding Path = Size, Mode=TwoWay}" Grid.Column="0" Style="{StaticResource Scale}"/>
+            <RadioButton Name="mediumButton" GroupName="Size" Content ="Medium" IsChecked="{Binding Path=Size, Mode=TwoWay}" Grid.Column="1" Style="{StaticResource Scale}"/>
+            <RadioButton  Name="largeButton" GroupName="Size" Content ="Large" IsChecked="{Binding Path=Size, Mode=TwoWay}" Grid.Column="2" Style="{StaticResource Scale}"/>
+        </Grid>
 
         <!--Label plus toggleable buttons for use in adding/removing special instructions
          for the order-->
         <TextBlock Grid.Row="3" Text="Special Instructions (Shows current choice):"/>
-
+        
         <WrapPanel Grid.Row="4">
-            <Button Name="iceButton" Background="#009E73">
-                Ice : Yes
-            </Button>
-            <Button Name="lemonButton" Background="#D55E00">
-                Lemon : No
-            </Button>
-            
+            <CheckBox Name="iceToggle" Content="Ice" IsChecked="{Binding Path=Ice, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="lemonToggle" Content="Cream" IsChecked="{Binding Path=Lemon, Mode=TwoWay}" Style="{StaticResource Scale}"/>
         </WrapPanel>
+        
         <Button Grid.Row="5" Click="CompleteClick" Name="completeButton">
-            Complete Order
+            Complete Item
         </Button>
-            
+
+        <Button Grid.Row="6" Click="CancelClick" Name="cancelButton" Background="#D55E00">
+            Cancel Item
+        </Button>
+
     </Grid>
 </UserControl>

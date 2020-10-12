@@ -6,6 +6,7 @@
 using BleakwindBuffet.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Drinks
@@ -16,11 +17,28 @@ namespace BleakwindBuffet.Data.Drinks
     public class AretinoAppleJuice : Drink, IOrderItem
     {
         /// <summary>
+        /// backing variable for Ice
+        /// </summary>
+        private bool ice = false;
+        /// <summary>
         /// Property holding whether the drink has ice
         /// Note that this is consistent with UML guideline but results in a necessary change of Add Ice to Hold Ice 
         /// which is contradictory to assignment description
         /// </summary>
-        public bool Ice { get; set; } = false;
+        public bool Ice
+        {
+            get
+            {
+                return ice;
+            }
+            set
+            {
+                ice = value;
+                NotifyPropertyChanged("Ice");
+                NotifyPropertyChanged("SpecialInstructions");
+            }
+        }
+
 
         /// <summary>
         /// Property to get the price of the drink based on size
