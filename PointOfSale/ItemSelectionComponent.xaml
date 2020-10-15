@@ -19,6 +19,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
         <!-- Sets default properties of various element types-->
@@ -135,6 +136,11 @@
             <Button Name="warriorWaterButton" Click="ItemSelectionClick" Grid.Row="1">
                 Warrior Water
             </Button>
+        </Grid>
+
+        <Grid Grid.Row="7">
+            <TextBlock Text="To create a combo, add an entree, side and drink to the order &#x0a;then select the items and click create combo" TextAlignment="Center"/>
+
         </Grid>
     </Grid>
 </UserControl>

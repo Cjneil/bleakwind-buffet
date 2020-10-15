@@ -1,4 +1,9 @@
-﻿<Window x:Class="PointOfSale.MainWindow"
+﻿<!--
+ * Author: Connor Neil
+ * File name: MainWindow.xaml
+ * Purpose: The Window that holds the menu and actually makes things appear on the screen
+ -->
+    <Window x:Class="PointOfSale.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,6 +12,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1644">
     <Grid>
+        <!-- Bet you never guessed, this is the menu-->
         <local:MenuComponent/>
     </Grid>
 </Window>

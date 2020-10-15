@@ -35,17 +35,42 @@ namespace BleakwindBuffet.Data
         public abstract uint Calories { get; }
 
         /// <summary>
+        /// ToString in Property form to use to invoke events when changed
+        /// </summary>
+        public virtual string Name
+        {
+            get => ToString();
+        }
+
+        /// <summary>
+        /// Instructions in string form as a property to watch for PropertyChangeEvents
+        /// </summary>
+        public virtual string Instructions
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (string s in SpecialInstructions)
+                {
+                    sb.Append("- " + s + "\n");
+                }
+                return sb.ToString();
+            }
+        }
+
+        /// <summary>
         /// Special instructions to prepare the entree stored in a list
         /// </summary>
         public abstract List<string> SpecialInstructions { get; }
 
         /// <summary>
-        /// Help method to call property changed event within derived classes
+        /// Helper method to call property changed event within derived classes
         /// </summary>
         /// <param name="propertyName"></param>
         protected void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyName.Equals("SpecialInstructions")) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Instructions"));
         }
     }
 }

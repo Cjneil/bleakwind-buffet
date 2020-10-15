@@ -80,6 +80,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(SS, "SpecialInstructions", () => {
                 SS.SausageLink = true;
             });
+            Assert.PropertyChanged(SS, "Instructions", () => {
+                SS.SausageLink = true;
+            });
         }
 
         [Fact]
@@ -100,6 +103,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 SS.Egg = false;
             });
             Assert.PropertyChanged(SS, "SpecialInstructions", () => {
+                SS.Egg = true;
+            });
+            Assert.PropertyChanged(SS, "Instructions", () => {
                 SS.Egg = true;
             });
         }
@@ -125,6 +131,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(SS, "SpecialInstructions", () => {
                 SS.HashBrowns = true;
             });
+            Assert.PropertyChanged(SS, "Instructions", () => {
+                SS.HashBrowns = true;
+            });
         }
 
         [Fact]
@@ -145,6 +154,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 SS.Pancake = false;
             });
             Assert.PropertyChanged(SS, "SpecialInstructions", () => {
+                SS.Pancake = true;
+            });
+            Assert.PropertyChanged(SS, "Instructions", () => {
                 SS.Pancake = true;
             });
         }

@@ -3,6 +3,7 @@
  * Class name: BriarheartMenu.xaml.cs
  * Purpose: Class used to represent the menu for customizing Briarheart Burger
  */
+using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
 using System;
 using System.Collections.Generic;
@@ -36,11 +37,28 @@ namespace PointOfSale
         {
             InitializeComponent();
             Ancestor = ancestor;
-            this.DataContext = new BriarheartBurger();
+            this.DataContext = new BriarheartBurger(); 
+            if (Ancestor.DataContext is Order order)
+            {
+                order.Add((IOrderItem)DataContext);
+            }
+        }
+
+        /// <summary>
+        /// Override to create a menu to modify an existing item
+        /// </summary>
+        /// <param name="ancestor">Menu of which this is a child</param>
+        /// <param name="item">Existing item to be modified</param>
+        public BriarheartMenu(MenuComponent ancestor, BriarheartBurger item)
+        {
+            InitializeComponent();
+            Ancestor = ancestor;
+            this.DataContext = item;
         }
 
         /// <summary>
         /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
+        /// and adds item to the overall order
         /// </summary>
         void CompleteClick(object sender, RoutedEventArgs e)
         {

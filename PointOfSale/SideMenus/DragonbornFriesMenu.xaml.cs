@@ -3,6 +3,7 @@
  * Class name: DragonbornFriesMenu.xaml.cs
  * Purpose: Class used to represent the menu for customizing Dragonborn Fries
  */
+using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Sides;
 using System;
 using System.Collections.Generic;
@@ -37,20 +38,29 @@ namespace PointOfSale
             InitializeComponent();
             Ancestor = ancestor;
             this.DataContext = new DragonbornWaffleFries();
+            if (Ancestor.DataContext is Order order)
+            {
+                order.Add((IOrderItem)DataContext);
+            }
         }
 
         /// <summary>
-        /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
+        /// Override to create a menu to modify an existing item
         /// </summary>
-        private void CompleteClick(object sender, RoutedEventArgs e)
+        /// <param name="ancestor">Menu of which this is a child</param>
+        /// <param name="item">Existing item to be modified</param>
+        public DragonbornFriesMenu(MenuComponent ancestor, DragonbornWaffleFries item)
         {
-            Ancestor.SwitchMenu("ItemMenu");
+            InitializeComponent();
+            Ancestor = ancestor;
+            this.DataContext = item;
         }
 
         /// <summary>
         /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
+        /// and adds item to the overall order
         /// </summary>
-        private void CancelClick(object sender, RoutedEventArgs e)
+        void CompleteClick(object sender, RoutedEventArgs e)
         {
             Ancestor.SwitchMenu("ItemMenu");
         }

@@ -3,6 +3,7 @@
  * Class name: MarkarthMilk.xaml.cs
  * Purpose: Class used to represent the menu for customizing Markarth Milk
  */
+using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Drinks;
 using System;
 using System.Collections.Generic;
@@ -37,20 +38,27 @@ namespace PointOfSale
             InitializeComponent();
             Ancestor = ancestor;
             this.DataContext = new MarkarthMilk();
+            if (Ancestor.DataContext is Order order)
+            {
+                order.Add((IOrderItem)DataContext);
+            }
+        }
+
+        /// <summary>
+        /// Creates MarkarthMilkMenu using an already existing Markarth Milk (for modification)
+        /// </summary>
+        public MarkarthMilkMenu(MenuComponent ancestor, MarkarthMilk item)
+        {
+            InitializeComponent();
+            Ancestor = ancestor;
+            this.DataContext = item;
+
         }
 
         /// <summary>
         /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
         /// </summary>
         void CompleteClick(object sender, RoutedEventArgs e)
-        {
-            Ancestor.SwitchMenu("ItemMenu");
-        }
-
-        /// <summary>
-        /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
-        /// </summary>
-        private void CancelClick(object sender, RoutedEventArgs e)
         {
             Ancestor.SwitchMenu("ItemMenu");
         }

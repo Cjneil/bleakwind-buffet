@@ -123,40 +123,6 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedSize()
-        {
-            var MK = new MarkarthMilk();
-            Assert.PropertyChanged(MK, "Size", () => {
-                MK.Size = Size.Medium;
-            });
-        }
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedPrice()
-        {
-            var MK = new MarkarthMilk();
-            Assert.PropertyChanged(MK, "Price", () => {
-                MK.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedCalories()
-        {
-            var MK = new MarkarthMilk();
-            Assert.PropertyChanged(MK, "Calories", () => {
-                MK.Size = Size.Medium;
-            });
-        }
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedToString()
-        {
-            var MK = new MarkarthMilk();
-            Assert.PropertyChanged(MK, "ToString", () => {
-                MK.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
         public void IceChangeShouldTriggerPropertyChangedIce()
         {
             var MK = new MarkarthMilk();
@@ -170,6 +136,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         {
             var MK = new MarkarthMilk();
             Assert.PropertyChanged(MK, "SpecialInstructions", () => {
+                MK.Ice = true;
+            });
+        }
+
+        [Fact]
+        public void IceChangeShouldTriggerPropertyChangedInstructions()
+        {
+            var MK = new MarkarthMilk();
+            Assert.PropertyChanged(MK, "Instructions", () => {
                 MK.Ice = true;
             });
         }

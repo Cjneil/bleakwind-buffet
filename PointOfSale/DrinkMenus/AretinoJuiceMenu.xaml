@@ -7,9 +7,19 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"     
              xmlns:local="clr-namespace:PointOfSale"
+             xmlns:data="clr-namespace:BleakwindBuffet.Data.Enums;assembly=Data"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="sizes" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="data:Size"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -48,39 +58,24 @@
                     Aretino Apple Juice
             </TextBlock>
         </Border>
-        
-        <!--Label plus buttons for use in changing the size of the order-->
+
+        <!--Label plus ComboBox to choose size of the order-->
         <TextBlock Grid.Row="1">
                 Size:
         </TextBlock>
-        
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width=".5*"/>
-                <ColumnDefinition Width=".6*"/>
-                <ColumnDefinition Width=".5*"/>
-            </Grid.ColumnDefinitions>
-            <RadioButton Name="smallButton" GroupName="Size" Content="Small" IsChecked="{Binding Path = Size, Mode=TwoWay}" Grid.Column="0" Style="{StaticResource Scale}"/>
-            <RadioButton Name="mediumButton" GroupName="Size" Content ="Medium" IsChecked="{Binding Path=Size, Mode=TwoWay}" Grid.Column="1" Style="{StaticResource Scale}"/>
-            <RadioButton  Name="largeButton" GroupName="Size" Content ="Large" IsChecked="{Binding Path=Size, Mode=TwoWay}" Grid.Column="2" Style="{StaticResource Scale}"/>
-        </Grid>
+        <ComboBox ItemsSource="{Binding Source={StaticResource sizes}}" SelectedItem="{Binding Path=Size}" Grid.Row="2"/>
 
-        <!--Label plus toggleable buttons for use in adding/removing special instructions
-         for the order-->
+        <!--Label plus checkboxes for use in adding/removing special instructions for the order-->
         <TextBlock Grid.Row="3">
-                Special Instructions (Yes/No states current choice):
+                Special Instructions:
         </TextBlock>
-
         <WrapPanel Grid.Row="4">
-            <CheckBox Name="iceToggle" Content="Ice" IsChecked="{Binding Path=Ice, Mode=TwoWay}" Style="{StaticResource Scale}"/>
+            <CheckBox Name="iceToggle" Content="Ice" IsChecked="{Binding Path=Ice}" Style="{StaticResource Scale}"/>
         </WrapPanel>
+        
+        <!-- Button to Complete the item being created/customized -->
         <Button Grid.Row="5" Click="CompleteClick" Name="completeButton">
             Complete Item
         </Button>
-
-        <Button Grid.Row="6" Click="CancelClick" Name="cancelButton" Background="#D55E00">
-            Cancel Item
-        </Button>
-
     </Grid>
 </UserControl>

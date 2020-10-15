@@ -80,6 +80,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(GO, "SpecialInstructions", () => {
                 GO.Broccoli = true;
             });
+            Assert.PropertyChanged(GO, "Instructions", () => {
+                GO.Broccoli = true;
+            });
         }
 
         [Fact]
@@ -100,6 +103,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 GO.Mushrooms = false;
             });
             Assert.PropertyChanged(GO, "SpecialInstructions", () => {
+                GO.Mushrooms = true;
+            });
+            Assert.PropertyChanged(GO, "Instructions", () => {
                 GO.Mushrooms = true;
             });
         }
@@ -124,6 +130,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(GO, "SpecialInstructions", () => {
                 GO.Tomato = true;
             });
+            Assert.PropertyChanged(GO, "Instructions", () => {
+                GO.Tomato = true;
+            });
         }
 
         [Fact]
@@ -144,6 +153,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 GO.Cheddar = false;
             });
             Assert.PropertyChanged(GO, "SpecialInstructions", () => {
+                GO.Cheddar = true;
+            });
+            Assert.PropertyChanged(GO, "Instructions", () => {
                 GO.Cheddar = true;
             });
         }

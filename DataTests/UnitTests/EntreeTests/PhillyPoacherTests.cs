@@ -73,6 +73,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(PO, "SpecialInstructions", () => {
                 PO.Sirloin = true;
             });
+            Assert.PropertyChanged(PO, "Instructions", () => {
+                PO.Sirloin = true;
+            });
         }
 
         [Fact]
@@ -95,6 +98,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(PO, "SpecialInstructions", () => {
                 PO.Onion = true;
             });
+            Assert.PropertyChanged(PO, "Instructions", () => {
+                PO.Onion = true;
+            });
         }
 
         [Fact]
@@ -115,6 +121,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 PO.Roll = false;
             });
             Assert.PropertyChanged(PO, "SpecialInstructions", () => {
+                PO.Roll = true;
+            });
+            Assert.PropertyChanged(PO, "Instructions", () => {
                 PO.Roll = true;
             });
         }

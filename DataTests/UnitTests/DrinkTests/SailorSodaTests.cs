@@ -171,40 +171,6 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedSize()
-        {
-            var SS = new SailorSoda();
-            Assert.PropertyChanged(SS, "Size", () => {
-                SS.Size = Size.Medium;
-            });
-        }
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedPrice()
-        {
-            var SS = new SailorSoda();
-            Assert.PropertyChanged(SS, "Price", () => {
-                SS.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedCalories()
-        {
-            var SS = new SailorSoda();
-            Assert.PropertyChanged(SS, "Calories", () => {
-                SS.Size = Size.Medium;
-            });
-        }
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedToString()
-        {
-            var SS = new SailorSoda();
-            Assert.PropertyChanged(SS, "ToString", () => {
-                SS.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
         public void IceChangeShouldTriggerPropertyChangedIce()
         {
             var SS = new SailorSoda();
@@ -223,6 +189,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
+        public void IceChangeShouldTriggerPropertyChangedInstructions()
+        {
+            var SS = new SailorSoda();
+            Assert.PropertyChanged(SS, "Instructions", () => {
+                SS.Ice = true;
+            });
+        }
+
+        [Fact]
         public void FlavorChangeShouldTriggerPropertyChangedFlavor()
         {
             var SS = new SailorSoda();
@@ -236,6 +211,14 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         {
             var SS = new SailorSoda();
             Assert.PropertyChanged(SS, "ToString", () => {
+                SS.Flavor = SodaFlavor.Grapefruit;
+            });
+        }
+        [Fact]
+        public void FlavorChangeShouldTriggerPropertyChangedName()
+        {
+            var SS = new SailorSoda();
+            Assert.PropertyChanged(SS, "Name", () => {
                 SS.Flavor = SodaFlavor.Grapefruit;
             });
         }

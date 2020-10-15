@@ -47,8 +47,7 @@
             </TextBlock>
         </Border>
 
-        <!--Label plus toggleable buttons for use in adding/removing special instructions
-         for the order-->
+        <!--Label plus checkboxes for use in adding/removing special instructions for the order-->
         <TextBlock Grid.Row="1">
                 Special Instructions
         </TextBlock>
@@ -59,13 +58,10 @@
             <CheckBox Name="mushroomToggle" Content="Mushrooms" IsChecked="{Binding Path=Mushrooms, Mode=TwoWay}" Style="{StaticResource Scale}"/>
             <CheckBox Name="tomatoToggle" Content="Tomato" IsChecked="{Binding Path=Tomato, Mode=TwoWay}" Style="{StaticResource Scale}"/>
         </WrapPanel>
-        
+
+        <!-- Buttons to Complete the item being created/customized -->
         <Button Grid.Row="3" Click="CompleteClick" Name="completeButton">
             Complete Item
-        </Button>
-
-        <Button Grid.Row="4" Click="CancelClick" Name="cancelButton" Background="#D55E00">
-            Cancel Item
         </Button>
     </Grid>
 </UserControl>

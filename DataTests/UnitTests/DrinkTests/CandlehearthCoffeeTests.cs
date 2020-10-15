@@ -165,40 +165,6 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedSize()
-        {
-            var CH = new CandlehearthCoffee();
-            Assert.PropertyChanged(CH, "Size", () => {
-                CH.Size = Size.Medium;
-            });
-        }
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedPrice()
-        {
-            var CH = new CandlehearthCoffee();
-            Assert.PropertyChanged(CH, "Price", () => {
-                CH.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedCalories()
-        {
-            var CH = new CandlehearthCoffee();
-            Assert.PropertyChanged(CH, "Calories", () => {
-                CH.Size = Size.Medium;
-            });
-        }
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedToString()
-        {
-            var CH = new CandlehearthCoffee();
-            Assert.PropertyChanged(CH, "ToString", () => {
-                CH.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
         public void IceChangeShouldTriggerPropertyChangedIce()
         {
             var CH = new CandlehearthCoffee();
@@ -212,6 +178,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         {
             var CH = new CandlehearthCoffee();
             Assert.PropertyChanged(CH, "SpecialInstructions", () => {
+                CH.Ice = true;
+            });
+        }
+
+        [Fact]
+        public void IceChangeShouldTriggerPropertyChangedInstructions()
+        {
+            var CH = new CandlehearthCoffee();
+            Assert.PropertyChanged(CH, "Instructions", () => {
                 CH.Ice = true;
             });
         }
@@ -235,10 +210,10 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
-        public void DecafChangeShouldTriggerPropertyChangedSpecialInstructions()
+        public void DecafChangeShouldTriggerPropertyChangedName()
         {
             var CH = new CandlehearthCoffee();
-            Assert.PropertyChanged(CH, "SpecialInstructions", () => {
+            Assert.PropertyChanged(CH, "ToString", () => {
                 CH.Decaf = true;
             });
         }
@@ -257,6 +232,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         {
             var CH = new CandlehearthCoffee();
             Assert.PropertyChanged(CH, "SpecialInstructions", () => {
+                CH.RoomForCream = true;
+            });
+        }
+
+        [Fact]
+        public void RoomForCreamChangeShouldTriggerPropertyChangedInstructions()
+        {
+            var CH = new CandlehearthCoffee();
+            Assert.PropertyChanged(CH, "Instructions", () => {
                 CH.RoomForCream = true;
             });
         }

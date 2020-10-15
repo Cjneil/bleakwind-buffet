@@ -12,16 +12,81 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="10*"/>
-        </Grid.RowDefinitions>
-        
-        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
-            <TextBlock Text="Current Order" FontSize="50" TextAlignment="Center" FontWeight="Bold" Background="#009E73" Foreground="White"/>
-        </Border>
 
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height = "2*"/>
+            <RowDefinition Height = ".75*"/>
+            <RowDefinition Height= ".75*"/>
+            <RowDefinition Height= ".75*"/>
+            <RowDefinition Height = "1*"/>
+            <RowDefinition Height = "1*"/>
+        </Grid.RowDefinitions>
+        <!-- Number of current Order-->
+        <Border Grid.Row="0" BorderBrush="Black" BorderThickness="2">
+            <TextBlock Text="{Binding Number, StringFormat= Order #{0}}" FontSize="50" TextAlignment="Center" FontWeight="Bold" Background="#009E73" Foreground="White"/>
+        </Border>
+        <!-- List of items in current order -->
         <ScrollViewer Grid.Row="1">
-            <ListView Name="orderList"/>
+            <ListView Name="orderList" SelectionMode="Multiple" ItemsSource="{Binding}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="20"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                            </Grid.Resources>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=Name}"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Price, StringFormat= {} {0:C}}" HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Row="1" Text="{Binding Path=Instructions}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </ScrollViewer>
+        <!-- Information about current order -->
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="Black" BorderThickness="1, 1, 0, 1" Grid.Row="0" Grid.Column="0">
+                    <TextBlock Text="Calories:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="0, 1, 1, 1" Grid.Row="0" Grid.Column="1">
+                    <TextBlock Text="{Binding Path=Calories}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                </Border>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Subtotal:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Tax:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Total:" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Subtotal, StringFormat= {} {0:C}}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=Tax, StringFormat= {} {0:C}}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding Path=Total, StringFormat= {} {0:C}}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+        <!-- Buttons to interact with current order-->
+        <Button Content="Create Combo" Click ="CreateCombo_Click" Grid.Row="3" Background ="#006699" Foreground="White"  FontSize="30"/>
+        <Button Content="Modify Item" Click ="ModifyItem_Click" Grid.Row="4" Background ="#006699" Foreground="White"  FontSize="30"/>
+        <Button Content="Remove Item(s)" Click="RemoveItem_Click" Grid.Row="5" Background= "#D55E00" Foreground="White" FontSize="30"/>
+        <Button Content="Complete Order" Grid.Row="6" Background="#009E73" Foreground="White" FontSize="30"/>
+        <Button Content="Cancel Order" Click="CancelOrder_Click" Grid.Row="7" Background= "#D55E00" Foreground="White" FontSize="30"/>
     </Grid>
 </UserControl>
