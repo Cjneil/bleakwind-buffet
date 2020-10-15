@@ -47,8 +47,7 @@
             </TextBlock>
         </Border>
 
-        <!--Label plus toggleable buttons for use in adding/removing special instructions
-         for the order-->
+        <!--Label plus checkboxes for use in adding/removing special instructions for the order-->
         <TextBlock Grid.Row="1">
                 Special Instructions:
         </TextBlock>
@@ -76,13 +75,10 @@
             <CheckBox Name="pickleToggle" Content="Pickle" Grid.Column="0" Grid.Row="2" IsChecked="{Binding Path=Pickle, Mode=TwoWay}" Style="{StaticResource Scale}"/>
             <CheckBox Name="tomatoToggle" Content="Tomato" Grid.Column="1" Grid.Row="2" IsChecked="{Binding Path=Tomato, Mode=TwoWay}" Style="{StaticResource Scale}"/>
         </Grid>
+
+        <!-- Button to Complete the item being created/customized -->
         <Button Grid.Row="3" Click="CompleteClick" Name="completeButton">
             Complete Item
         </Button>
-
-        <Button Grid.Row="4" Click="CancelClick" Name="cancelButton" Background="#D55E00">
-            Cancel Item
-        </Button>
-
     </Grid>
 </UserControl>

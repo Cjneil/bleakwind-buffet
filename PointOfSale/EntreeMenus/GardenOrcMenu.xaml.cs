@@ -3,6 +3,7 @@
  * Class name: GardenOrcMenu.xaml.cs
  * Purpose: Class used to represent the menu for customizing Garden Orc Omelette
  */
+using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
 using System;
 using System.Collections.Generic;
@@ -30,27 +31,37 @@ namespace PointOfSale
         public MenuComponent Ancestor { get; set; }
 
         /// <summary>
-        /// Creates GardenOrcMenu element
+        /// Creates menu to customize new item
         /// </summary>
+        /// <param name="ancestor">Menu component of which this is the child</param>
         public GardenOrcMenu(MenuComponent ancestor)
         {
             InitializeComponent();
             Ancestor = ancestor;
             this.DataContext = new GardenOrcOmelette();
+            if (Ancestor.DataContext is Order order)
+            {
+                order.Add((IOrderItem)DataContext);
+            }
+        }
+
+        /// <summary>
+        /// Override to create a menu to modify an existing item
+        /// </summary>
+        /// <param name="ancestor">Menu of which this is a child</param>
+        /// <param name="item">Existing item to be modified</param>
+        public GardenOrcMenu(MenuComponent ancestor, GardenOrcOmelette item)
+        {
+            InitializeComponent();
+            Ancestor = ancestor;
+            this.DataContext = item;
         }
 
         /// <summary>
         /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
+        /// and adds item to the overall order
         /// </summary>
         void CompleteClick(object sender, RoutedEventArgs e)
-        {
-            Ancestor.SwitchMenu("ItemMenu");
-        }
-
-        /// <summary>
-        /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
-        /// </summary>
-        private void CancelClick(object sender, RoutedEventArgs e)
         {
             Ancestor.SwitchMenu("ItemMenu");
         }

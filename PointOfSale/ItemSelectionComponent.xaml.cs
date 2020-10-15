@@ -3,6 +3,8 @@
  * Class name: ItemSelectionComponent.xaml.cs
  * Purpose: Class used to represent the menu to select items
  */
+using BleakwindBuffet.Data;
+using BleakwindBuffet.Data.Entrees;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -91,6 +93,9 @@ namespace PointOfSale
                     break;
                 case "Vokun Salad":
                     Ancestor.SwitchMenu("Vokun Salad");
+                    break;
+                case "Thugs T-Bone":
+                    if (Ancestor.DataContext is Order order) order.Add(new ThugsTBone());
                     break;
             }
         }

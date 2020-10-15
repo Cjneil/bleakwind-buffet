@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.Data
 {
@@ -13,7 +14,7 @@ namespace BleakwindBuffet.Data
     /// An interface indicating that an item is meant to be orderable
     /// and must require a price, calories, and list of special instructions
     /// </summary>
-    public interface IOrderItem
+    public interface IOrderItem: INotifyPropertyChanged
     {
         /// <summary>
         /// Represents that any OrderItem must have a price
@@ -32,5 +33,6 @@ namespace BleakwindBuffet.Data
         /// Represents that any OrderItem must have a list of special instructions to prepare the order (may be empty)
         /// </summary>
         List<string> SpecialInstructions { get; }
+
     }
 }

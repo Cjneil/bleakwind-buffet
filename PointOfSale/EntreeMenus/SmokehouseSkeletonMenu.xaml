@@ -46,9 +46,8 @@
                     Smokehouse Skeleton
             </TextBlock>
         </Border>
-        
-        <!--Label plus toggleable buttons for use in adding/removing special instructions
-         for the order-->
+
+        <!--Label plus checkboxes for use in adding/removing special instructions for the order-->
         <TextBlock Grid.Row="1">
                 Special Instructions:
         </TextBlock>
@@ -59,13 +58,10 @@
             <CheckBox Name="pancakeToggle" Content="Pancake" IsChecked="{Binding Path=Pancake, Mode=TwoWay}" Style="{StaticResource Scale}"/>
             <CheckBox Name="sausageToggle" Content="SausageLink" IsChecked="{Binding Path=SausageLink, Mode=TwoWay}" Style="{StaticResource Scale}"/>
         </WrapPanel>
-        
+
+        <!-- Button to Complete the item being created/customized -->
         <Button Grid.Row="3" Click="CompleteClick" Name="completeButton">
             Complete Item
-        </Button>
-
-        <Button Grid.Row="4" Click="CancelClick" Name="cancelButton" Background="#D55E00">
-            Cancel Item
         </Button>
     </Grid>
 </UserControl>

@@ -36,10 +36,35 @@ namespace BleakwindBuffet.Data
             set
             {
                 size = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ToString"));
+            }
+        }
+
+        /// <summary>
+        /// ToString in Property form to use to invoke events when changed
+        /// </summary>
+        public virtual string Name
+        {
+            get => ToString();
+        }
+
+        /// <summary>
+        /// Instructions in string form as a property to watch for PropertyChangeEvents
+        /// </summary>
+        public virtual string Instructions
+        {
+            get
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach(string s in SpecialInstructions)
+                {
+                    sb.Append("- " + s + "\n");
+                }
+                return sb.ToString();
             }
         }
 
@@ -62,12 +87,15 @@ namespace BleakwindBuffet.Data
         public abstract List<string> SpecialInstructions { get; }
 
         /// <summary>
-        /// Help method to call property changed event within derived classes
+        /// Helper method to call property changed event within derived classes
         /// </summary>
         /// <param name="propertyName"></param>
         protected void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (propertyName.Equals("SpecialInstructions")) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Instructions"));
+            if (propertyName.Equals("ToString")) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+
         }
     }
 }

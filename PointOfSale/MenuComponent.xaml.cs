@@ -3,6 +3,10 @@
  * Class name: MenuComponent.xaml.cs
  * Purpose: Class that represents the container to switch between menus
  */
+using BleakwindBuffet.Data;
+using BleakwindBuffet.Data.Drinks;
+using BleakwindBuffet.Data.Entrees;
+using BleakwindBuffet.Data.Sides;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,6 +34,8 @@ namespace PointOfSale
         {
             InitializeComponent();
             menu.Ancestor = this;
+            orderList.Ancestor = this;
+            this.DataContext = new Order();
         }
 
         /// <summary>
@@ -92,5 +98,80 @@ namespace PointOfSale
                     break;
             }
         }
+
+        /// <summary>
+        /// Handles switching menus for modification of an existing item
+        /// </summary>
+        /// <param name="name">Name of menu to switch to</param>
+        public void SwitchMenu(IOrderItem orderItem)
+        {
+            if(orderItem is AretinoAppleJuice)
+            {
+                menuInterface.Child = new AretinoJuiceMenu(this, orderItem);
+            }
+            else if(orderItem is CandlehearthCoffee coffee)
+            {
+                menuInterface.Child = new CandlehearthMenu(this, coffee);
+            }
+            else if (orderItem is MarkarthMilk milk) 
+            {
+                menuInterface.Child = new MarkarthMilkMenu(this, milk);
+            }
+            else if (orderItem is SailorSoda soda)
+            {
+                menuInterface.Child = new SailorSodaMenu(this, soda);
+            }
+            else if (orderItem is WarriorWater water)
+            {
+                menuInterface.Child = new WarriorWaterMenu(this, water);
+            }
+            else if (orderItem is BriarheartBurger briar)
+            {
+                menuInterface.Child = new BriarheartMenu(this, briar);
+            }
+            else if (orderItem is DoubleDraugr draugr)
+            {
+                menuInterface.Child = new DoubleDraugrMenu(this, draugr);
+            }
+            else if (orderItem is GardenOrcOmelette orc)
+            {
+                menuInterface.Child = new GardenOrcMenu(this, orc);
+            }
+            else if (orderItem is PhillyPoacher philly)
+            {
+                menuInterface.Child = new PhillyPoacherMenu(this, philly);
+            }
+            else if (orderItem is SmokehouseSkeleton smoke)
+            {
+                menuInterface.Child = new SmokehouseSkeletonMenu(this, smoke);
+            }
+            else if (orderItem is ThalmorTriple triple)
+            {
+                menuInterface.Child = new ThalmorTripleMenu(this, triple);
+            }
+            else if (orderItem is DragonbornWaffleFries dragon)
+            {
+                menuInterface.Child = new DragonbornFriesMenu(this, dragon);
+            }
+            else if (orderItem is FriedMiraak fried)
+            {
+                menuInterface.Child = new FriedMiraakMenu(this, fried);
+            }
+            else if (orderItem is MadOtarGrits otar)
+            {
+                menuInterface.Child = new MadOtarGritsMenu(this, otar);
+            }
+            else if (orderItem is VokunSalad vokun)
+            {
+                menuInterface.Child = new VokunSaladMenu(this, vokun);
+            }
+        }
+
+        public void Reset()
+        {
+            this.DataContext = new Order();
+        }
+
+
     }
 }

@@ -108,6 +108,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(DD, "SpecialInstructions", () => {
                 DD.Bun = true;
             });
+            Assert.PropertyChanged(DD, "Instructions", () => {
+                DD.Bun = true;
+            });
         }
 
         [Fact]
@@ -128,6 +131,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 DD.Ketchup = false;
             });
             Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Ketchup = true;
+            });
+            Assert.PropertyChanged(DD, "Instructions", () => {
                 DD.Ketchup = true;
             });
         }
@@ -152,6 +158,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(DD, "SpecialInstructions", () => {
                 DD.Mustard = true;
             });
+            Assert.PropertyChanged(DD, "Instructions", () => {
+                DD.Mustard = true;
+            });
         }
 
         [Fact]
@@ -172,6 +181,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 DD.Pickle = false;
             });
             Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Pickle = true;
+            });
+            Assert.PropertyChanged(DD, "Instructions", () => {
                 DD.Pickle = true;
             });
         }
@@ -196,6 +208,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(DD, "SpecialInstructions", () => {
                 DD.Cheese = true;
             });
+            Assert.PropertyChanged(DD, "Instructions", () => {
+                DD.Cheese = true;
+            });
         }
 
         [Fact]
@@ -216,6 +231,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 DD.Tomato = false;
             });
             Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Tomato = true;
+            });
+            Assert.PropertyChanged(DD, "Instructions", () => {
                 DD.Tomato = true;
             });
         }
@@ -240,6 +258,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(DD, "SpecialInstructions", () => {
                 DD.Lettuce = true;
             });
+            Assert.PropertyChanged(DD, "Instructions", () => {
+                DD.Lettuce = true;
+            });
         }
 
         [Fact]
@@ -260,6 +281,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 DD.Mayo = false;
             });
             Assert.PropertyChanged(DD, "SpecialInstructions", () => {
+                DD.Mayo = true;
+            });
+            Assert.PropertyChanged(DD, "Instructions", () => {
                 DD.Mayo = true;
             });
         }

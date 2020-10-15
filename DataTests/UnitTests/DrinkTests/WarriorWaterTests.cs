@@ -143,24 +143,6 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedSize()
-        {
-            var WW = new WarriorWater();
-            Assert.PropertyChanged(WW, "Size", () => {
-                WW.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedToString()
-        {
-            var WW = new WarriorWater();
-            Assert.PropertyChanged(WW, "ToString", () => {
-                WW.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
         public void IceChangeShouldTriggerPropertyChangedIce()
         {
             var WW = new WarriorWater();
@@ -179,6 +161,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
+        public void IceChangeShouldTriggerPropertyChangedInstructions()
+        {
+            var WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "Instructions", () => {
+                WW.Ice = true;
+            });
+        }
+
+        [Fact]
         public void LemonChangeShouldTriggerPropertyChangedLemon()
         {
             var WW = new WarriorWater();
@@ -192,6 +183,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         {
             var WW = new WarriorWater();
             Assert.PropertyChanged(WW, "SpecialInstructions", () => {
+                WW.Lemon = true;
+            });
+        }
+
+        [Fact]
+        public void LemonChangeShouldTriggerPropertyChangedInstructions()
+        {
+            var WW = new WarriorWater();
+            Assert.PropertyChanged(WW, "Instructions", () => {
                 WW.Lemon = true;
             });
         }

@@ -3,6 +3,7 @@
  * Class name: ThalmorTripleMenu.xaml.cs
  * Purpose: Class used to represent the menu for customizing Thalmor Triple
  */
+using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Entrees;
 using System;
 using System.Collections.Generic;
@@ -37,20 +38,29 @@ namespace PointOfSale
             InitializeComponent();
             Ancestor = ancestor;
             this.DataContext = new ThalmorTriple();
+            if (Ancestor.DataContext is Order order)
+            {
+                order.Add((IOrderItem)DataContext);
+            }
+        }
+
+        /// <summary>
+        /// Override to create a menu to modify an existing item
+        /// </summary>
+        /// <param name="ancestor">Menu of which this is a child</param>
+        /// <param name="item">Existing item to be modified</param>
+        public ThalmorTripleMenu(MenuComponent ancestor, ThalmorTriple item)
+        {
+            InitializeComponent();
+            Ancestor = ancestor;
+            this.DataContext = item;
         }
 
         /// <summary>
         /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
+        /// and adds item to the overall order
         /// </summary>
         void CompleteClick(object sender, RoutedEventArgs e)
-        {
-            Ancestor.SwitchMenu("ItemMenu");
-        }
-
-        /// <summary>
-        /// Switches menu displayed on MenuComponent back to ItemSelectionComponent using ancestor's SwitchMenu Method
-        /// </summary>
-        private void CancelClick(object sender, RoutedEventArgs e)
         {
             Ancestor.SwitchMenu("ItemMenu");
         }

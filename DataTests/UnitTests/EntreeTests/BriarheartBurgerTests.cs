@@ -78,13 +78,16 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         }
 
         [Fact]
-        public void BunChangeShouldTriggerPropertyChangedBunAndSpecialInstructions()
+        public void BunChangeShouldTriggerPropertyChangedBunSpecialInstructions()
         {
             var BB = new BriarheartBurger();
             Assert.PropertyChanged(BB, "Bun", () => {
                 BB.Bun = false;
             });
             Assert.PropertyChanged(BB, "SpecialInstructions", () => {
+                BB.Bun = true;
+            });
+            Assert.PropertyChanged(BB, "Instructions", () => {
                 BB.Bun = true;
             });
         }
@@ -109,6 +112,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(BB, "SpecialInstructions", () => {
                 BB.Ketchup = true;
             });
+            Assert.PropertyChanged(BB, "Instructions", () => {
+                BB.Ketchup = true;
+            });
         }
 
         [Fact]
@@ -129,6 +135,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 BB.Mustard = false;
             });
             Assert.PropertyChanged(BB, "SpecialInstructions", () => {
+                BB.Mustard = true;
+            });
+            Assert.PropertyChanged(BB, "Instructions", () => {
                 BB.Mustard = true;
             });
         }
@@ -153,6 +162,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
             Assert.PropertyChanged(BB, "SpecialInstructions", () => {
                 BB.Pickle = true;
             });
+            Assert.PropertyChanged(BB, "Instructions", () => {
+                BB.Pickle = true;
+            });
         }
 
         [Fact]
@@ -173,6 +185,9 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
                 BB.Cheese = false;
             });
             Assert.PropertyChanged(BB, "SpecialInstructions", () => {
+                BB.Cheese = true;
+            });
+            Assert.PropertyChanged(BB, "Instructions", () => {
                 BB.Cheese = true;
             });
         }

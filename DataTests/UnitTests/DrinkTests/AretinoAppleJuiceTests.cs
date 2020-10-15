@@ -123,40 +123,6 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         }
 
         [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedSize()
-        {
-            var AJ = new AretinoAppleJuice();
-            Assert.PropertyChanged(AJ, "Size", () => {
-                AJ.Size = Size.Medium;
-            });
-        }
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedPrice()
-        {
-            var AJ = new AretinoAppleJuice();
-            Assert.PropertyChanged(AJ, "Price", () => {
-                AJ.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedCalories()
-        {
-            var AJ = new AretinoAppleJuice();
-            Assert.PropertyChanged(AJ, "Calories", () => {
-                AJ.Size = Size.Medium;
-            });
-        }
-        [Fact]
-        public void SizeChangeShouldTriggerPropertyChangedToString()
-        {
-            var AJ = new AretinoAppleJuice();
-            Assert.PropertyChanged(AJ, "ToString", () => {
-                AJ.Size = Size.Medium;
-            });
-        }
-
-        [Fact]
         public void IceChangeShouldTriggerPropertyChangedIce()
         {
             var AJ = new AretinoAppleJuice();
@@ -170,6 +136,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         {
             var AJ = new AretinoAppleJuice();
             Assert.PropertyChanged(AJ, "SpecialInstructions", () => {
+                AJ.Ice = true;
+            });
+        }
+
+        [Fact]
+        public void IceChangeShouldTriggerPropertyChangedInstructions()
+        {
+            var AJ = new AretinoAppleJuice();
+            Assert.PropertyChanged(AJ, "Instructions", () => {
                 AJ.Ice = true;
             });
         }

@@ -14,7 +14,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width=".4*"/>
+            <ColumnDefinition Width=".45*"/>
         </Grid.ColumnDefinitions>
         <Grid.Resources>
             <Style TargetType="Button">
@@ -23,22 +23,16 @@
                 <Setter Property="BorderThickness" Value="2.5"/>
                 <Setter Property="BorderBrush" Value="Black"/>
             </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="25"/>
+            </Style>
         </Grid.Resources>
         <!-- Contains the current menu for use in choosing/customizing items for order-->
-            <!-- Border holds the current menu-->
+        <!-- Border holds the current menu-->
         <Viewbox Name="menuInterface" VerticalAlignment="Top">
             <local:ItemSelectionComponent x:Name="menu"/>
         </Viewbox>
         <!-- Contains a list of all current items in the order -->
-        <Grid Name="orderListContainer" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height = "10*"/>
-                <RowDefinition Height = "2*"/>
-                <RowDefinition Height = "2*"/>
-            </Grid.RowDefinitions>
-            <local:CurrentOrder x:Name="orderList" Grid.Row="0"/>
-            <Button Content="Complete Order" Grid.Row="1" Background="#009E73" Foreground="White" FontSize="40"/>
-            <Button Content="Cancel Order" Grid.Row="2" Background= "#D55E00" Foreground="White" FontSize="40"/>
-        </Grid>
+        <local:CurrentOrder x:Name="orderList" Grid.Column="1"/>
     </Grid>
 </UserControl>

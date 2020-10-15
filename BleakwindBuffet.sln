@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTests", "DataTests\Data
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{FA560B04-B399-4822-B2AF-6DDD188DDE01}"
 	ProjectSection(SolutionItems) = preProject
+		Documentation\point-of-sale-milestone-3-uml.pdf = Documentation\point-of-sale-milestone-3-uml.pdf
+		Documentation\Point-of-sale-milestone-3-uml.png = Documentation\Point-of-sale-milestone-3-uml.png
 		Documentation\PointOfSale1.pdf = Documentation\PointOfSale1.pdf
 	EndProjectSection
 EndProject
