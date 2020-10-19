@@ -206,7 +206,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
             AretinoAppleJuice d = new AretinoAppleJuice();
             Assert.PropertyChanged(O, property, () =>
             {
-                O.ClearOrder();
+                O.CancelOrder();
             });
         }
 

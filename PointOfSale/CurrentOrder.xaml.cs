@@ -34,11 +34,48 @@ namespace PointOfSale
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Creates a new combo using the selected items in the listview
+        /// </summary>
+        /// <param name="sender">Create Combo button</param>
+        /// <param name="e">Event args</param>
         private void CreateCombo_Click(object sender, RoutedEventArgs e)
         {
+            Drink comboDrink = null;
+            Entree comboEntree= null;
+            Side comboSide = null;
+            if (DataContext is Order order && orderList.SelectedItems.Count == 3)
+            {
+                for (int i = 0; i < orderList.SelectedItems.Count; i++)
+                {
+                    if (orderList.SelectedItems[i] is Drink drink)
+                    {
+                        comboDrink = drink;
+                    }
+                    else if (orderList.SelectedItems[i] is Side side)
+                    {
+                        comboSide = side;
+                    }
+                    else if (orderList.SelectedItems[i] is Entree entree)
+                    {
+                        comboEntree = entree;
+                    }
+                }
+                if(comboDrink != null && comboEntree != null && comboSide != null) {
+                    while (orderList.SelectedItems.Count > 0)
+                    {
+                        order.Remove((IOrderItem)orderList.SelectedItem);
+                    }
+                    order.Add(new Combo(comboDrink, comboEntree, comboSide));
+                }
+            }
         }
 
+        /// <summary>
+        /// Modifies the currently selected item
+        /// </summary>
+        /// <param name="sender">Modify Item button</param>
+        /// <param name="e">Event args</param>
         private void ModifyItem_Click(object sender, RoutedEventArgs e)
         {
             if(orderList.SelectedItem != null && orderList.SelectedItems.Count == 1)
@@ -51,6 +88,11 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// Removes the currently selected item(s)
+        /// </summary>
+        /// <param name="sender">Remove item button</param>
+        /// <param name="e">Event Args</param>
         private void RemoveItem_Click(object sender, RoutedEventArgs e)
         {
             if(DataContext is Order order && orderList.HasItems == true )
@@ -62,12 +104,24 @@ namespace PointOfSale
             }
         }
 
+        /// <summary>
+        /// Calls the menu's method to complete the order
+        /// </summary>
+        /// <param name="sender">Complete order button</param>
+        /// <param name="e">event args</param>
+        private void CompleteOrder_Click(object sender, RoutedEventArgs e)
+        {
+            Ancestor.Complete();
+        }
+
+        /// <summary>
+        /// Cancels the order completely by calling Menu's reset method
+        /// </summary>
+        /// <param name="sender">Cancel button</param>
+        /// <param name="e">event args</param>
         private void CancelOrder_Click(object sender, RoutedEventArgs e)
         {
-            if(Ancestor.DataContext is Order order)
-            {
-                order.ClearOrder();
-            }
+            Ancestor.Reset();
         }
     }
 }

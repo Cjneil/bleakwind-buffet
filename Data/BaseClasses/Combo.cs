@@ -139,7 +139,14 @@ namespace BleakwindBuffet.Data
                 return (drink.Calories + entree.Calories + side.Calories);
             }
         }
-        /*
+
+        public string Name
+        {
+            get 
+            { 
+                return "Combo"; 
+            }
+        }
         /// <summary>
         /// Instructions in string form as a property to watch for PropertyChangeEvents
         /// For potential later use. Please ignore
@@ -151,15 +158,14 @@ namespace BleakwindBuffet.Data
                 StringBuilder sb = new StringBuilder();
                 foreach (string s in SpecialInstructions)
                 {
-                    if (s.Equals(Entree.ToString())) sb.Append(Entree.ToString() + "\n");
-                    else if (s.Equals(Side.ToString())) sb.Append(Side.ToString() + "\n");
-                    else if (s.Equals(Drink.ToString())) sb.Append(Drink.ToString() + "\n");
-                    sb.Append("+ " + s + "\n");
+                    if (s.Equals(Entree.ToString())) sb.Append("   " + Entree.ToString() + "\n");
+                    else if (s.Equals(Side.ToString())) sb.Append("\n   " + Side.ToString() + "\n");
+                    else if (s.Equals(Drink.ToString())) sb.Append("\n   " + Drink.ToString() + "\n");
+                    else sb.Append("      - " + s + "\n");
                 }
                 return sb.ToString();
             }
         }
-        */
         /// <summary>
         /// Special Instruction list property storing the Special Instructions for all items in the combo
         /// </summary>
@@ -195,7 +201,7 @@ namespace BleakwindBuffet.Data
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
             }
-            else if (e.PropertyName == "SpecialInstructions") PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+            else if (e.PropertyName == "SpecialInstructions") PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Instructions"));
         }
 
 

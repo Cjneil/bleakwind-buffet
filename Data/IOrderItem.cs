@@ -34,5 +34,15 @@ namespace BleakwindBuffet.Data
         /// </summary>
         List<string> SpecialInstructions { get; }
 
+        /// <summary>
+        /// Represents that all OrderItems must have properly formatted name as a string
+        /// </summary>
+        string Name { get; }
+
+        /// <summary>
+        /// Represents that all OrderItems must have properly formatted Instructions as a string
+        /// </summary>
+        string Instructions { get; }
+
     }
 }

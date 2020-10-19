@@ -61,7 +61,7 @@
         </Grid.Resources>
         <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
             <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="30" Foreground="White" Background="#009E73" >
-                    Customize a Sailor Soda
+                    Sailor Soda
             </TextBlock>
         </Border>
 
