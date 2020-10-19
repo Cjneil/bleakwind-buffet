@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BleakwindBuffet.Data;
 using RoundRegister;
 
 namespace PointOfSale
 {
     public class CashRegister
     {
+        public CashRegister(Order order)
+        {
+            OrderTotal = order.Total;
+        }
+
+        public double OrderTotal { get; set; } 
+
         /*Beginning of properties for currency stored in drawer */
         public int Pennies => CashDrawer.Pennies;
 
