@@ -5,4 +5,10 @@
     <RootNamespace>BleakwindBuffet.Data</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="RoundRegister">
+      <HintPath>RoundRegister.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

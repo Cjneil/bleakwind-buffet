@@ -32,6 +32,7 @@ namespace BleakwindBuffet.Data
         {
             Number = nextOrderNumber;
             nextOrderNumber++;
+            OnPropertyChanged(new PropertyChangedEventArgs("Number"));
             CollectionChanged += CollectionChangedListener;
         }
 
@@ -187,7 +188,7 @@ namespace BleakwindBuffet.Data
             }
         }
 
-        public void ClearOrder()
+        public void CancelOrder()
         {
             foreach (IOrderItem item in this)
             {

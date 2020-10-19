@@ -28,6 +28,14 @@ namespace PointOfSale
     public partial class MenuComponent : UserControl
     {
         /// <summary>
+        /// Property holding any combo currently being worked on
+        /// </summary>
+        public Combo CurrentCombo
+        {
+            get;
+            set;
+        }
+        /// <summary>
         /// Creates MenuComponent element
         /// </summary>
         public MenuComponent()
@@ -92,9 +100,16 @@ namespace PointOfSale
                     menuInterface.Child = new VokunSaladMenu(this);
                     break;
                 case "ItemMenu":
-                    var newMenu = new ItemSelectionComponent();
-                    newMenu.Ancestor = this;
-                    menuInterface.Child = newMenu;
+                    if (CurrentCombo == null)
+                    {
+                        var newMenu = new ItemSelectionComponent();
+                        newMenu.Ancestor = this;
+                        menuInterface.Child = newMenu;
+                    }
+                    else
+                    {
+                        SwitchMenu(CurrentCombo);
+                    }
                     break;
             }
         }
@@ -105,15 +120,15 @@ namespace PointOfSale
         /// <param name="name">Name of menu to switch to</param>
         public void SwitchMenu(IOrderItem orderItem)
         {
-            if(orderItem is AretinoAppleJuice)
+            if (orderItem is AretinoAppleJuice)
             {
                 menuInterface.Child = new AretinoJuiceMenu(this, orderItem);
             }
-            else if(orderItem is CandlehearthCoffee coffee)
+            else if (orderItem is CandlehearthCoffee coffee)
             {
                 menuInterface.Child = new CandlehearthMenu(this, coffee);
             }
-            else if (orderItem is MarkarthMilk milk) 
+            else if (orderItem is MarkarthMilk milk)
             {
                 menuInterface.Child = new MarkarthMilkMenu(this, milk);
             }
@@ -165,10 +180,44 @@ namespace PointOfSale
             {
                 menuInterface.Child = new VokunSaladMenu(this, vokun);
             }
+            else if (orderItem is Combo combo)
+            {
+                CurrentCombo = combo;
+                menuInterface.Child = new ComboMenu(this, combo);
+            }
+            else if (orderItem is ThugsTBone tbone)
+            {
+                var newMenu = new ItemSelectionComponent();
+                newMenu.Ancestor = this;
+                menuInterface.Child = newMenu;
+            }
         }
 
+        /// <summary>
+        /// Moves to payment screen
+        /// </summary>
+        public void Complete()
+        {
+            menuInterface.Child = new PaymentOptionsMenu() { Ancestor = this };
+        }
+
+        /// <summary>
+        /// moves to cash payment screen
+        /// </summary>
+        public void CashPayment()
+        {
+            menuInterface.Child = new CashMenu() { Ancestor = this };
+        }
+
+        /// <summary>
+        /// Completely resets/cancels order and begins a new one
+        /// </summary>
         public void Reset()
         {
+            if(this.DataContext is Order order)
+            {
+                order.CancelOrder();
+            }
             this.DataContext = new Order();
         }
 

@@ -7,7 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="CashTransaction.cs" />
+    <Compile Remove="ComboDrinksMenu.xaml.cs" />
+    <Compile Remove="ComboEntreesMenu.xaml.cs" />
+    <Compile Remove="ComboSidesMenu.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="ComboDrinksMenu.xaml" />
+    <Page Remove="ComboEntreesMenu.xaml" />
+    <Page Remove="ComboSidesMenu.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RoundRegister">
+      <HintPath>..\Data\RoundRegister.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

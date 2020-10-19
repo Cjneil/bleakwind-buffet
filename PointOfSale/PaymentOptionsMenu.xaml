@@ -1,28 +1,17 @@
 ﻿<!--
  * Author: Connor Neil
- * File name: MarkarthMilkMenu.xaml
- * Purpose: XAML representation of Markarth Milk customization menu
+ * File name: PaymentOptionsMenu.xaml
+ * Purpose: Xaml file defining a menu in which a user can choose to pay with cash, credit/debit, or return to the order
  -->
-<UserControl x:Class="PointOfSale.MarkarthMilkMenu"
+    <UserControl x:Class="PointOfSale.PaymentOptionsMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"     
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PointOfSale"
-             xmlns:data="clr-namespace:BleakwindBuffet.Data.Enums;assembly=Data"
-             xmlns:system="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d">
-    <UserControl.Resources>
-        <ObjectDataProvider x:Key="sizes" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="data:Size"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
@@ -32,14 +21,14 @@
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="FontWeight" Value="Bold"/>
-                <Setter Property="TextAlignment" Value="Left"/>
+                <Setter Property="TextAlignment" Value="Center"/>
                 <Setter Property="FontSize" Value="30"/>
             </Style>
             <Style TargetType="Button">
                 <Setter Property="FontSize" Value="30"/>
                 <Setter Property="FontWeight" Value="Bold"/>
                 <Setter Property="Padding" Value="20"/>
-                <Setter Property="Margin" Value="35"/>
+                <Setter Property="Margin" Value="70 35"/>
                 <Setter Property="Background" Value="#009E73"/>
                 <Setter Property="Foreground" Value="White"/>
             </Style>
@@ -54,28 +43,12 @@
         </Grid.Resources>
         <Border Grid.Row="0" BorderThickness="2" BorderBrush="Black">
             <TextBlock FontWeight="Bold" TextAlignment="Center" FontSize="30" Foreground="White" Background="#009E73" TextWrapping="Wrap">
-                   Markarth Milk
+                    Payment Options
             </TextBlock>
         </Border>
-
-        <!--Label plus ComboBox to choose size of the order-->
-        <TextBlock Grid.Row="1">
-                Size:
-        </TextBlock>
-        <ComboBox ItemsSource="{Binding Source={StaticResource sizes}}" SelectedItem="{Binding Path=Size}" Grid.Row="2"/>
-
-
-        <!--Label plus checkboxes for use in adding/removing special instructions for the order-->
-        <TextBlock Grid.Row="3">
-                Special Instructions:
-        </TextBlock>
-        <WrapPanel Grid.Row="4">
-            <CheckBox Name="iceToggle" Content="Ice" IsChecked="{Binding Path=Ice}" Style="{StaticResource Scale}"/>
-        </WrapPanel>
-
-        <!-- Button to Complete the item being created/customized -->
-        <Button Grid.Row="5" Click="CompleteClick" Name="completeButton">
-            Complete Item
-        </Button>
+        <Button Grid.Row="1" Content="Cash" Click="Cash_Click"/>
+        <Button Grid.Row="2" Content="Credit/Debit" Click="CreditDebit_Click"/>
+        <Button Grid.Row="3" Content="Return to Order"/>
+        <TextBox Name="cardApprovalText" Text="" Grid.Row="4" TextAlignment="Center"/>
     </Grid>
 </UserControl>

@@ -12,7 +12,6 @@
              mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-
             <RowDefinition Height="*"/>
             <RowDefinition Height="7*"/>
             <RowDefinition Height = "2*"/>
@@ -29,6 +28,11 @@
         <!-- List of items in current order -->
         <ScrollViewer Grid.Row="1">
             <ListView Name="orderList" SelectionMode="Multiple" ItemsSource="{Binding}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -43,15 +47,16 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=Name}"/>
-                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Price, StringFormat= {} {0:C}}" HorizontalAlignment="Right"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Price, StringFormat= {} {0:C}}" TextAlignment="Right"/>
                             <TextBlock Grid.Row="1" Text="{Binding Path=Instructions}"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
+                
             </ListView>
         </ScrollViewer>
         <!-- Information about current order -->
@@ -86,7 +91,7 @@
         <Button Content="Create Combo" Click ="CreateCombo_Click" Grid.Row="3" Background ="#006699" Foreground="White"  FontSize="30"/>
         <Button Content="Modify Item" Click ="ModifyItem_Click" Grid.Row="4" Background ="#006699" Foreground="White"  FontSize="30"/>
         <Button Content="Remove Item(s)" Click="RemoveItem_Click" Grid.Row="5" Background= "#D55E00" Foreground="White" FontSize="30"/>
-        <Button Content="Complete Order" Grid.Row="6" Background="#009E73" Foreground="White" FontSize="30"/>
+        <Button Content="Complete Order" Click="CompleteOrder_Click" Grid.Row="6" Background="#009E73" Foreground="White" FontSize="30"/>
         <Button Content="Cancel Order" Click="CancelOrder_Click" Grid.Row="7" Background= "#D55E00" Foreground="White" FontSize="30"/>
     </Grid>
 </UserControl>
