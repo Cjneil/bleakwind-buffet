@@ -206,7 +206,7 @@ namespace PointOfSale
         /// </summary>
         public void CashPayment()
         {
-            menuInterface.Child = new CashMenu() { Ancestor = this };
+            menuInterface.Child = new CashMenu(this);
         }
 
         /// <summary>

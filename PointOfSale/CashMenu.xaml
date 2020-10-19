@@ -99,7 +99,9 @@
                 <LineBreak/>
                 Sale
             </TextBlock>
-            <Border Margin="5 15" Grid.Column="2" BorderBrush="Black" BorderThickness=".25"/>
+            <Border Margin="5 15" Grid.Column="2" BorderBrush="Black" BorderThickness=".25">
+                <TextBlock Text="{Binding Path=OrderTotal, StringFormat= {} {0:C}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" TextAlignment="Center" FontSize="10" Grid.Column="3" >
                 Amount
                 <LineBreak/>
@@ -107,11 +109,13 @@
             </TextBlock>
             <Border Margin="5 15" Grid.Column="4" BorderBrush="Black" BorderThickness=".25"/>
             <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" TextAlignment="Center" FontSize="10" Grid.Column="5" >
-                Amount
+                Change
                 <LineBreak/>
-                Due
+                Owed
             </TextBlock>
-            <Border Margin="5 15" Grid.Column="6" BorderBrush="Black" BorderThickness=".25"/>
+            <Border Margin="5 15" Grid.Column="6" BorderBrush="Black" BorderThickness=".25">
+                <TextBlock Text=" " HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
             <Button Margin="5 15" Grid.Column="7">
                 <TextBlock HorizontalAlignment="Right" VerticalAlignment="Center" TextAlignment="Center" FontSize="10" Grid.Column="1" >
                 Finalize
