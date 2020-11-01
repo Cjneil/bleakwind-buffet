@@ -12,9 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		Documentation\point-of-sale-milestone-3-uml.pdf = Documentation\point-of-sale-milestone-3-uml.pdf
 		Documentation\Point-of-sale-milestone-3-uml.png = Documentation\Point-of-sale-milestone-3-uml.png
 		Documentation\PointOfSale1.pdf = Documentation\PointOfSale1.pdf
+		Documentation\Website-UML.pdf = Documentation\Website-UML.pdf
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSale", "PointOfSale\PointOfSale.csproj", "{820BD152-5331-4A0C-AB12-6D055375EAEF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Website", "Website\Website.csproj", "{82DBF4D3-FE0E-49D5-B8FC-BB0241A73A6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +37,10 @@ Global
 		{820BD152-5331-4A0C-AB12-6D055375EAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{820BD152-5331-4A0C-AB12-6D055375EAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{820BD152-5331-4A0C-AB12-6D055375EAEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82DBF4D3-FE0E-49D5-B8FC-BB0241A73A6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82DBF4D3-FE0E-49D5-B8FC-BB0241A73A6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82DBF4D3-FE0E-49D5-B8FC-BB0241A73A6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82DBF4D3-FE0E-49D5-B8FC-BB0241A73A6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

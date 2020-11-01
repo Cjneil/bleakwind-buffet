@@ -47,15 +47,24 @@ namespace BleakwindBuffet.Data
             {
                 DragonbornWaffleFries d = new DragonbornWaffleFries();
                 d.Size = size;
+                sidesList.Add(d);
+            }
+            foreach (Size size in Enum.GetValues(typeof(Size)))
+            {
                 FriedMiraak f = new FriedMiraak();
                 f.Size = size;
+                sidesList.Add(f);
+            }
+            foreach (Size size in Enum.GetValues(typeof(Size)))
+            {
                 MadOtarGrits m = new MadOtarGrits();
                 m.Size = size;
+                sidesList.Add(m);
+            }
+            foreach (Size size in Enum.GetValues(typeof(Size)))
+            {
                 VokunSalad v = new VokunSalad();
                 v.Size = size;
-                sidesList.Add(d);
-                sidesList.Add(f);
-                sidesList.Add(m);
                 sidesList.Add(v);
             }
             return sidesList;
@@ -73,19 +82,32 @@ namespace BleakwindBuffet.Data
                 AretinoAppleJuice a = new AretinoAppleJuice();
                 a.Size = size;
                 drinkList.Add(a);
+            }
+            foreach (Size size in Enum.GetValues(typeof(Size)))
+            {
                 CandlehearthCoffee c = new CandlehearthCoffee();
                 c.Size = size;
                 drinkList.Add(c);
+            }
+            foreach (Size size in Enum.GetValues(typeof(Size)))
+            {
                 MarkarthMilk m = new MarkarthMilk();
                 m.Size = size;
                 drinkList.Add(m);
-                foreach (SodaFlavor flavor in Enum.GetValues(typeof(SodaFlavor)))
+            }
+            
+            foreach (SodaFlavor flavor in Enum.GetValues(typeof(SodaFlavor)))
+            {
+                foreach (Size size in Enum.GetValues(typeof(Size)))
                 {
                     SailorSoda s = new SailorSoda();
                     s.Size = size;
                     s.Flavor = flavor;
                     drinkList.Add(s);
                 }
+            }
+            foreach (Size size in Enum.GetValues(typeof(Size)))
+            {
                 WarriorWater w = new WarriorWater();
                 w.Size = size;
                 drinkList.Add(w);

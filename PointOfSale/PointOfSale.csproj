@@ -11,12 +11,14 @@
     <Compile Remove="ComboDrinksMenu.xaml.cs" />
     <Compile Remove="ComboEntreesMenu.xaml.cs" />
     <Compile Remove="ComboSidesMenu.xaml.cs" />
+    <Compile Remove="CustomizeFalmerFloat.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Page Remove="ComboDrinksMenu.xaml" />
     <Page Remove="ComboEntreesMenu.xaml" />
     <Page Remove="ComboSidesMenu.xaml" />
+    <Page Remove="CustomizeFalmerFloat.xaml" />
   </ItemGroup>
 
   <ItemGroup>

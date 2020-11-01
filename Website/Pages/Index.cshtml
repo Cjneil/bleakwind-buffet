@@ -1,0 +1,66 @@
+﻿@page
+@model IndexModel
+@using BleakwindBuffet.Data
+@using BleakwindBuffet.Data.Enums 
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to Bleakwind Buffet</h1>
+    <p>
+        We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. Shake the blood
+        off your sword and sake your thirst with one of our old-fashioned sailor sodas. Hack into a Smokehouse Skeleton with your
+        dagger. Or vanquish the the mighty Thalmor Triple Burger! You’ve had a hard adventure and earned your loot, so spend it
+        with us!
+    </p>
+    <div class="menu">
+        <h2 class="menu-item-type">Entrees</h2>
+        <div class="menu-entrees">
+            @foreach (Entree item in Menu.Entrees())
+            {
+                <div class="menu-item">
+                    <h3>@item.Name</h3>
+                    <div>$@item.Price</div>
+                    <div>Calories: @item.Calories</div>
+                </div>
+            }
+        </div>
+        <h2 class="menu-item-type">Sides</h2>
+        <div class="menu-sides">
+            @foreach (Side item in Menu.Sides())
+            {
+                <div class="menu-item">
+                    <h3>@item.Name</h3>
+                    <div>$@item.Price</div>
+                    <div>Calories: @item.Calories</div>
+                </div>
+            }
+        </div>
+        <h2 class="menu-item-type">Drinks</h2>
+        <div class="soda-options">
+            <h3>Available Sailor Soda Flavors</h3>
+            <div />
+            <ul class="flavors">
+                @foreach (SodaFlavor flavor in (SodaFlavor[])Enum.GetValues(typeof(SodaFlavor)))
+                {
+                    <li>@flavor</li>
+                }
+            </ul>
+        </div>
+        <div class="menu-drinks">
+            @foreach (Drink item in Menu.Drinks())
+            {
+                <div class="menu-item">
+                    <h3>@item.Name</h3>
+                    <div>$@item.Price</div>
+                    <div>Calories: @item.Calories</div>
+                </div>
+            }
+        </div>
+        <h2 class="menu-item-type">Combos</h2>
+        <p class="combo-description">
+        Combos can be created from any combination of an Entree, Side, and Drink with a discount of $1 from the combined price
+        </p>
+    </div>
+</div>
