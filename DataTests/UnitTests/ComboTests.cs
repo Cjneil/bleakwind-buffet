@@ -92,7 +92,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
             var e = new BriarheartBurger();
             var s = new FriedMiraak();
             var C = new Combo(d, e, s);
-            Assert.PropertyChanged(C, "SpecialInstructions", () =>
+            Assert.PropertyChanged(C, "Instructions", () =>
             {
                 e.Bun = false;
             });
