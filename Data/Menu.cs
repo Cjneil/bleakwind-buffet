@@ -11,6 +11,7 @@ using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Sides;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BleakwindBuffet.Data
@@ -126,6 +127,118 @@ namespace BleakwindBuffet.Data
             fullMenu.AddRange(Sides());
             fullMenu.AddRange(Drinks());
             return fullMenu;
+        }
+
+        /// <summary>
+        /// Searches the menu for matching items
+        /// </summary>
+        /// <param name="terms">The terms to search for</param>
+        /// <returns>A collection of order items</returns>
+        public static IEnumerable<IOrderItem> Search(string terms)
+        {
+            List<IOrderItem> results = new List<IOrderItem>();
+            if (terms == null) return FullMenu();
+            foreach (IOrderItem orderItem in FullMenu())
+            {
+                //For some reason string.Contains(string, StringComparison) was not an overload so I put the basic string contains for now
+                if (orderItem.Name.ToLower().Contains(terms.ToLower()))
+                {
+                    results.Add(orderItem);
+                }
+            }
+            return results;
+        }
+
+        public static IEnumerable<IOrderItem> FilterByCalories(IEnumerable<IOrderItem> menu, int? min, int? max)
+        {
+            if (min == null && max == null) return menu;
+            var results = new List<IOrderItem>();
+
+            // only a maximum specified
+            if (min == null)
+            {
+                foreach (IOrderItem orderItem in menu)
+                {
+                    if (orderItem.Calories <= max) results.Add(orderItem);
+                }
+                return results;
+            }
+            // only a minimum specified
+            if (max == null)
+            {
+                foreach (IOrderItem orderItem in menu)
+                {
+                    if (orderItem.Calories >= min) results.Add(orderItem);
+                }
+                return results;
+            }
+            // Both minimum and maximum specified
+            foreach (IOrderItem orderItem in menu)
+            {
+                if (orderItem.Calories >= min && orderItem.Calories <= max)
+                {
+                    results.Add(orderItem);
+                }
+            }
+            return results;
+        }
+
+        public static IEnumerable<IOrderItem> FilterByPrice(IEnumerable<IOrderItem> menu, double? min, double? max)
+        {
+            if (min == null && max == null) return menu;
+            var results = new List<IOrderItem>();
+
+            // only a maximum specified
+            if (min == null)
+            {
+                foreach (IOrderItem orderItem in menu)
+                {
+                    if (orderItem.Price <= max) results.Add(orderItem);
+                }
+                return results;
+            }
+            // only a minimum specified
+            if (max == null)
+            {
+                foreach (IOrderItem orderItem in menu)
+                {
+                    if (orderItem.Price >= min) results.Add(orderItem);
+                }
+                return results;
+            }
+            // Both minimum and maximum specified
+            foreach (IOrderItem orderItem in menu)
+            {
+                if (orderItem.Price >= min && orderItem.Price <= max)
+                {
+                    results.Add(orderItem);
+                }
+            }
+            return results;
+        }
+
+        public static IEnumerable<IOrderItem> FilterByItemTypes(IEnumerable<IOrderItem> menu, IEnumerable<string> itemTypes)
+        {
+            // If no filter is specified, just return the provided collection
+            if (itemTypes == null || itemTypes.Count() == 0) return menu;
+            // Filter the supplied collection of movies
+            List<IOrderItem> results = new List<IOrderItem>();
+            foreach (IOrderItem item in menu)
+            {
+                if (itemTypes.Contains("Entrees") && item is Entree)
+                {
+                    results.Add(item);
+                }
+                else if (itemTypes.Contains("Sides") && item is Side)
+                {
+                    results.Add(item);
+                }
+                else if(itemTypes.Contains("Drinks") && item is Drink)
+                {
+                    results.Add(item);
+                }
+            }
+            return results;
         }
     }
 }

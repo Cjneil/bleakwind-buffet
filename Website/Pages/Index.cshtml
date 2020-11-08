@@ -6,61 +6,121 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome to Bleakwind Buffet</h1>
-    <p>
-        We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. Shake the blood
-        off your sword and sake your thirst with one of our old-fashioned sailor sodas. Hack into a Smokehouse Skeleton with your
-        dagger. Or vanquish the the mighty Thalmor Triple Burger! You’ve had a hard adventure and earned your loot, so spend it
-        with us!
-    </p>
-    <div class="menu">
-        <h2 class="menu-item-type">Entrees</h2>
-        <div class="menu-entrees">
-            @foreach (Entree item in Menu.Entrees())
-            {
-                <div class="menu-item">
-                    <h3>@item.Name</h3>
-                    <div>$@item.Price</div>
-                    <div>Calories: @item.Calories</div>
-                </div>
-            }
-        </div>
-        <h2 class="menu-item-type">Sides</h2>
-        <div class="menu-sides">
-            @foreach (Side item in Menu.Sides())
-            {
-                <div class="menu-item">
-                    <h3>@item.Name</h3>
-                    <div>$@item.Price</div>
-                    <div>Calories: @item.Calories</div>
-                </div>
-            }
-        </div>
-        <h2 class="menu-item-type">Drinks</h2>
-        <div class="soda-options">
-            <h3>Available Sailor Soda Flavors</h3>
-            <div />
-            <ul class="flavors">
-                @foreach (SodaFlavor flavor in (SodaFlavor[])Enum.GetValues(typeof(SodaFlavor)))
-                {
-                    <li>@flavor</li>
-                }
-            </ul>
-        </div>
-        <div class="menu-drinks">
-            @foreach (Drink item in Menu.Drinks())
-            {
-                <div class="menu-item">
-                    <h3>@item.Name</h3>
-                    <div>$@item.Price</div>
-                    <div>Calories: @item.Calories</div>
-                </div>
-            }
-        </div>
-        <h2 class="menu-item-type">Combos</h2>
-        <p class="combo-description">
-        Combos can be created from any combination of an Entree, Side, and Drink with a discount of $1 from the combined price
-        </p>
+<form id="menu-database">
+    <div id="search">
+        <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
+        <input type="submit" value="Search">
     </div>
-</div>
+    <div id="filters">        
+        <fieldset>
+            <legend>Item Type Options</legend>
+            <label>
+                <input type="checkbox" name="OrderItemTypes" value="Entrees" checked="@Model.OrderItemTypes.Contains("Entrees")" />
+                Entree
+            </label>
+
+            <label>
+                <input type="checkbox" name="OrderItemTypes" value="Sides" checked="@Model.OrderItemTypes.Contains("Sides")" />
+                Sides
+            </label>
+
+            <label>
+                <input type="checkbox" name="OrderItemTypes" value="Drinks" checked="@Model.OrderItemTypes.Contains("Drinks")" />
+                Drinks
+            </label>
+        </fieldset>
+        <h4>Calories Filter</h4>
+        <div>
+            Between
+            <input name="CaloriesMin" autocomplete="on" type="number" min="0" max="9999" step="1" placeholder ="0" value="@Model.CaloriesMin"/>
+            and
+            <input name="CaloriesMax" autocomplete="on" type="number" min="0" max="9999" step="1" placeholder ="9999" value="@Model.CaloriesMax"/>
+        </div>
+
+        <h4>Price Filter</h4>
+        <div>
+            Between
+            <input name="PriceMin" type="number" min="0" max="100" step="0.01" placeholder="0" value="@Model.PriceMin"/>
+            and
+            <input name="PriceMax" type="number" min="0" max="100" step="0.01" placeholder="99.99"value="@Model.PriceMax" />
+        </div>
+
+    </div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome to Bleakwind Buffet</h1>
+        <p>
+            We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. Shake the blood
+            off your sword and sake your thirst with one of our old-fashioned sailor sodas. Hack into a Smokehouse Skeleton with your
+            dagger. Or vanquish the the mighty Thalmor Triple Burger! You’ve had a hard adventure and earned your loot, so spend it
+            with us!
+        </p>
+        <div class="menu">
+            @if (@Model.OrderItemTypes.Contains("Entrees") || Model.OrderItemTypes.Length == 0)
+            {
+                <h2 class="menu-item-type">Entrees</h2>
+                <div class="menu-entrees">
+                    @foreach (IOrderItem item in @Model.OrderItems)
+                    {
+                        @if (item is Entree)
+                        {
+                            <div class="menu-item">
+                                <h3>@item.Name</h3>
+                                <div>$@item.Price</div>
+                                <div>Calories: @item.Calories</div>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+            @if (Model.OrderItemTypes.Contains("Sides") || Model.OrderItemTypes.Length == 0)
+            {
+                <h2 class="menu-item-type">Sides</h2>
+
+                <div class="menu-sides">
+                    @foreach (IOrderItem item in @Model.OrderItems)
+                    {
+                        @if (item is Side)
+                        {
+                            <div class="menu-item">
+                                <h3>@item.Name</h3>
+                                <div>$@item.Price</div>
+                                <div>Calories: @item.Calories</div>
+                            </div>
+                        }
+                    }
+                </div>
+            }
+            @if (Model.OrderItemTypes.Contains("Drinks") || Model.OrderItemTypes.Length == 0)
+            {
+                <h2 class="menu-item-type">Drinks</h2>
+                <div class="menu-drinks">
+                    @foreach (IOrderItem item in @Model.OrderItems)
+                    {
+                        @if (item is Drink)
+                        {
+                            <div class="menu-item">
+                                <h3>@item.Name</h3>
+                                <div>$@item.Price</div>
+                                <div>Calories: @item.Calories</div>
+                            </div>
+                        }
+                    }
+                </div>
+                <div class="soda-options">
+                    <h3>Available Sailor Soda Flavors</h3>
+                    <div />
+                    <ul class="flavors">
+                        @foreach (SodaFlavor flavor in (SodaFlavor[])Enum.GetValues(typeof(SodaFlavor)))
+                        {
+                            <li>@flavor</li>
+                        }
+                    </ul>
+                </div>
+            }
+            <h2 class="menu-item-type">Combos</h2>
+            <p class="combo-description">
+                Combos can be created from any combination of an Entree, Side, and Drink with a discount of $1 from the combined price
+            </p>
+        </div>
+    </div>
+</form>
