@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+ * Author: Connor Neil 
+ * File: Index.cshtml.cs
+ * Purpose: Functions as model for information needed in Index.cshtml along with handling Get requests for the site
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -54,18 +60,25 @@ namespace Website.Pages
         /// <summary>
         /// handles query information on get request to filter menu items
         /// </summary>
-        public void OnGet()
+        public void OnGet(int? CaloriesMin, int? CaloriesMax, double? PriceMin, double? PriceMax)
         {
-            CaloriesMin = int.TryParse(Request.Query["CaloriesMin"], out var i) ? i : default(int?);
-            CaloriesMax = int.TryParse(Request.Query["CaloriesMax"], out var j) ? j : default(int?);
-            PriceMin = double.TryParse(Request.Query["PriceMin"], out var k) ? k : default(double?);
-            PriceMax = double.TryParse(Request.Query["PriceMax"], out var l) ? l : default(double?);
+            this.CaloriesMin = CaloriesMin;
+            this.CaloriesMax = CaloriesMax;
+            this.PriceMin = PriceMin;
+            this.PriceMax = PriceMax;
             SearchTerms = Request.Query["SearchTerms"];
             OrderItemTypes = Request.Query["OrderItemTypes"];
-            OrderItems = Menu.Search(SearchTerms);
+            OrderItems = Menu.FullMenu();
             OrderItems = Menu.FilterByItemTypes(OrderItems, OrderItemTypes);
             OrderItems = Menu.FilterByCalories(OrderItems, CaloriesMin, CaloriesMax);
             OrderItems = Menu.FilterByPrice(OrderItems, PriceMin, PriceMax);
+
+            if (SearchTerms != null)
+            {
+                string[] splitTerms = SearchTerms.Split(" ");
+                //this is here because for some reason the Data project does not seem to recognize the Contains(2 inputs) overload despite necessary dependencies
+                OrderItems = OrderItems.Where(item => splitTerms.Any(term => item.Name.Contains(term, StringComparison.InvariantCultureIgnoreCase)) || splitTerms.Any(term => item.Description.Contains(term, StringComparison.InvariantCultureIgnoreCase)));
+            }
         }
     }
 }

@@ -1,17 +1,22 @@
 ﻿@page
 @model IndexModel
 @using BleakwindBuffet.Data
-@using BleakwindBuffet.Data.Enums 
+@using BleakwindBuffet.Data.Enums
 @{
     ViewData["Title"] = "Home page";
 }
-
+<!-- Write your comments here
+Author: Connor Neil
+    File: Index.cshtml
+    Purpose: Defines the html structure of the main index page to be used for displaying the menu along with filters/searchbox.
+-->
 <form id="menu-database">
-    <div id="search">
-        <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
-        <input type="submit" value="Search">
-    </div>
-    <div id="filters">        
+
+    <div id="filters">
+        <div id="search">
+            <input type="text" name="SearchTerms" value="@Model.SearchTerms" />
+            <input type="submit" value="Search">
+        </div>
         <fieldset>
             <legend>Item Type Options</legend>
             <label>
@@ -32,18 +37,19 @@
         <h4>Calories Filter</h4>
         <div>
             Between
-            <input name="CaloriesMin" autocomplete="on" type="number" min="0" max="9999" step="1" placeholder ="0" value="@Model.CaloriesMin"/>
+            <input name="CaloriesMin" autocomplete="on" type="number" min="0" max="9999" step="1" placeholder="0" value="@Model.CaloriesMin" />
             and
-            <input name="CaloriesMax" autocomplete="on" type="number" min="0" max="9999" step="1" placeholder ="9999" value="@Model.CaloriesMax"/>
+            <input name="CaloriesMax" autocomplete="on" type="number" min="0" max="9999" step="1" placeholder="9999" value="@Model.CaloriesMax" />
         </div>
 
         <h4>Price Filter</h4>
         <div>
             Between
-            <input name="PriceMin" type="number" min="0" max="100" step="0.01" placeholder="0" value="@Model.PriceMin"/>
+            <input name="PriceMin" type="number" min="0" max="100" step="0.01" placeholder="0" value="@Model.PriceMin" />
             and
-            <input name="PriceMax" type="number" min="0" max="100" step="0.01" placeholder="99.99"value="@Model.PriceMax" />
+            <input name="PriceMax" type="number" min="0" max="100" step="0.01" placeholder="99.99" value="@Model.PriceMax" />
         </div>
+
 
     </div>
     <div class="text-center">
@@ -67,6 +73,7 @@
                                 <h3>@item.Name</h3>
                                 <div>$@item.Price</div>
                                 <div>Calories: @item.Calories</div>
+                                <div>@item.Description</div>
                             </div>
                         }
                     }
@@ -85,6 +92,7 @@
                                 <h3>@item.Name</h3>
                                 <div>$@item.Price</div>
                                 <div>Calories: @item.Calories</div>
+                                <div>@item.Description</div>
                             </div>
                         }
                     }
@@ -102,6 +110,7 @@
                                 <h3>@item.Name</h3>
                                 <div>$@item.Price</div>
                                 <div>Calories: @item.Calories</div>
+                                <div>@item.Description</div>
                             </div>
                         }
                     }

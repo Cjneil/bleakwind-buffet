@@ -97,5 +97,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             };
             Assert.Equal(name, FM.ToString());
         }
+
+        [Fact]
+        public void ShouldHaveCorrectDescription()
+        {
+            var FM = new FriedMiraak();
+            Assert.Equal("Perfectly prepared hash brown pancakes.", FM.Description);
+        }
     }
 }

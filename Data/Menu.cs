@@ -149,96 +149,72 @@ namespace BleakwindBuffet.Data
             return results;
         }
 
+        /// <summary>
+        /// Filters a list of items between two nullable ints (used for Calorie filtering)
+        /// </summary>
+        /// <param name="menu">Menu to be filtered</param>
+        /// <param name="min">Minimum Calories</param>
+        /// <param name="max">Maximum Calories</param>
+        /// <returns>Filtered menu</returns>
         public static IEnumerable<IOrderItem> FilterByCalories(IEnumerable<IOrderItem> menu, int? min, int? max)
         {
-            if (min == null && max == null) return menu;
-            var results = new List<IOrderItem>();
-
-            // only a maximum specified
-            if (min == null)
+            if (min != null || max != null)
             {
-                foreach (IOrderItem orderItem in menu)
+                if (min != null && max == null)
                 {
-                    if (orderItem.Calories <= max) results.Add(orderItem);
+                    menu = menu.Where(item => item.Calories >= min);
                 }
-                return results;
-            }
-            // only a minimum specified
-            if (max == null)
-            {
-                foreach (IOrderItem orderItem in menu)
+                else if (min == null && max != null)
                 {
-                    if (orderItem.Calories >= min) results.Add(orderItem);
+                    menu = menu.Where(item => item.Calories <= max);
                 }
-                return results;
+                else menu = menu.Where(item => item.Calories <= max && item.Calories >= min);
             }
-            // Both minimum and maximum specified
-            foreach (IOrderItem orderItem in menu)
-            {
-                if (orderItem.Calories >= min && orderItem.Calories <= max)
-                {
-                    results.Add(orderItem);
-                }
-            }
-            return results;
+            return menu;
         }
 
+        /// <summary>
+        /// Filters a list of items between two nullable doubles (used for Price filtering)
+        /// </summary>
+        /// <param name="menu">Order Items to be filtered</param>
+        /// <param name="min">Minimum Price</param>
+        /// <param name="max">Maximum Price</param>
+        /// <returns>Filtered menu</returns>
         public static IEnumerable<IOrderItem> FilterByPrice(IEnumerable<IOrderItem> menu, double? min, double? max)
         {
-            if (min == null && max == null) return menu;
-            var results = new List<IOrderItem>();
-
-            // only a maximum specified
-            if (min == null)
+            if (min != null || max != null)
             {
-                foreach (IOrderItem orderItem in menu)
+                if (min != null && max == null)
                 {
-                    if (orderItem.Price <= max) results.Add(orderItem);
+                    menu = menu.Where(item => item.Price >= min);
                 }
-                return results;
-            }
-            // only a minimum specified
-            if (max == null)
-            {
-                foreach (IOrderItem orderItem in menu)
+                else if (min == null && max != null)
                 {
-                    if (orderItem.Price >= min) results.Add(orderItem);
+                    menu = menu.Where(item => item.Price <= max);
                 }
-                return results;
+                else menu = menu.Where(item => item.Price <= max && item.Price >= min);
             }
-            // Both minimum and maximum specified
-            foreach (IOrderItem orderItem in menu)
-            {
-                if (orderItem.Price >= min && orderItem.Price <= max)
-                {
-                    results.Add(orderItem);
-                }
-            }
-            return results;
+            return menu;
         }
 
+        /// <summary>
+        /// Filters menu based on item types selected
+        /// </summary>
+        /// <param name="menu">Order items to be filtered</param>
+        /// <param name="itemTypes">Types of items that should remain</param>
+        /// <returns> Filtered Menu</returns>
         public static IEnumerable<IOrderItem> FilterByItemTypes(IEnumerable<IOrderItem> menu, IEnumerable<string> itemTypes)
         {
-            // If no filter is specified, just return the provided collection
-            if (itemTypes == null || itemTypes.Count() == 0) return menu;
-            // Filter the supplied collection of movies
-            List<IOrderItem> results = new List<IOrderItem>();
-            foreach (IOrderItem item in menu)
+            if (itemTypes.Any())
             {
-                if (itemTypes.Contains("Entrees") && item is Entree)
-                {
-                    results.Add(item);
-                }
-                else if (itemTypes.Contains("Sides") && item is Side)
-                {
-                    results.Add(item);
-                }
-                else if(itemTypes.Contains("Drinks") && item is Drink)
-                {
-                    results.Add(item);
-                }
+                if (!itemTypes.Contains("Entrees"))
+                    menu = menu.Where(item => !(item is Entree));
+                if (!itemTypes.Contains("Sides"))
+                    menu = menu.Where(item => !(item is Side));
+                if (!itemTypes.Contains("Drinks"))
+                    menu = menu.Where(item => !(item is Drink));
             }
-            return results;
+            return menu;
         }
     }
 }

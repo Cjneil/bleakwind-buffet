@@ -205,5 +205,10 @@ namespace BleakwindBuffet.Data
         }
 
 
+        /// <summary>
+        /// String describing the item
+        /// </summary>
+        public string Description { get; } = "A basic combo";
+
     }
 }

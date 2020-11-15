@@ -97,5 +97,10 @@ namespace BleakwindBuffet.Data
             if (propertyName.Equals("ToString")) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
 
         }
+
+        /// <summary>
+        /// String describing the item
+        /// </summary>
+        public abstract string Description { get; }
     }
 }

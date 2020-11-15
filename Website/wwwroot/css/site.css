@@ -1,5 +1,9 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿/*  
+ * Author: Connor Neil
+ * Modified by: Connor Neil
+ * File: Site.css
+ * Purpose: Defines css styling to apply to html throughout the project
+ */
 
 a.navbar-brand {
   white-space: normal;
@@ -79,6 +83,7 @@ body {
 .menu-entrees {
     padding: 5px;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     border-top: 3px groove black;
     border-bottom: 3px groove black;
@@ -87,6 +92,7 @@ body {
 .menu-sides {
     padding: 5px;
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
     border-top: 3px groove black;
     border-bottom: 3px groove black;
@@ -95,14 +101,30 @@ body {
 .menu-drinks {
     padding: 5px;
     display: flex;
+    flex-direction:row;
     flex-wrap: wrap;
     border-top: 3px groove black;
     border-bottom: 3px groove black;
 }
-
 .menu-item {
-    flex: 1 0 30%;
+    flex: 1 0 25%;
     margin: .5% 1.5%;
+}
+
+@media(max-width: 490px){
+    .menu-entrees {
+        flex-direction: column;
+    }
+    .menu-sides {
+        flex-direction: column;
+    }
+    .menu-drinks {
+        flex-direction: column;
+    }
+    .menu-item {
+        flex: 1 0 90%;
+        margin: .5% 1.5%;
+    }
 }
 
 .menu-item-type {
@@ -152,4 +174,8 @@ form#menu-database {
 #filters h4 {
     margin-top: 0.2rem;
     margin-bottom: 0.2rem;
+}
+
+#search div {
+    margin-bottom: 0.4rem;
 }

@@ -122,5 +122,16 @@ namespace BleakwindBuffet.Data.Drinks
             if (!Decaf) return $"{Size} Candlehearth Coffee";
             else return $"{Size} Decaf Candlehearth Coffee";
         }
+
+        /// <summary>
+        /// String describing the item
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Fair trade, fresh ground dark roast coffee.";
+            }
+        }
     }
 }

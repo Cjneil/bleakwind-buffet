@@ -72,5 +72,10 @@ namespace BleakwindBuffet.Data
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
             if (propertyName.Equals("SpecialInstructions")) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Instructions"));
         }
+
+        /// <summary>
+        /// String describing the item
+        /// </summary>
+        public abstract string Description { get; }
     }
 }

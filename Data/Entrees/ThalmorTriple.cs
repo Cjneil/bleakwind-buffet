@@ -235,5 +235,16 @@ namespace BleakwindBuffet.Data.Entrees
         {
             return "Thalmor Triple";
         }
+
+        /// <summary>
+        /// String describing the item
+        /// </summary>
+        public override string Description
+        {
+            get
+            {
+                return "Think you are strong enough to take on the Thalmor? Inlcudes two 1/4lb patties with a 1/2lb patty inbetween with ketchup, mustard, pickle, cheese, tomato, lettuce, mayo, bacon, and an egg.";
+            }
+        }
     }
 }

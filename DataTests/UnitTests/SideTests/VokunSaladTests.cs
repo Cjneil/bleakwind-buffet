@@ -97,5 +97,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             };
             Assert.Equal(name, VS.ToString());
         }
+
+        [Fact]
+        public void ShouldHaveCorrectDescription()
+        {
+            var VS = new VokunSalad();
+            Assert.Equal("A seasonal fruit salad of mellons, berries, mango, grape, apple, and oranges.", VS.Description);
+        }
     }
 }

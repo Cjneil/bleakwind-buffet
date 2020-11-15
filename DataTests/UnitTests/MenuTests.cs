@@ -324,13 +324,7 @@ namespace BleakwindBuffet.DataTests.UnitTests
             fullMenu.Add(new BriarheartBurger());
             fullMenu.Add(new FriedMiraak());
             string[] options = { "Entrees", "Sides", "Drinks" };
-            var menu = Menu.FilterByItemTypes(fullMenu, null);
-            Assert.Collection(menu,
-                item => Assert.Equal("Small Aretino Apple Juice", item.ToString()),
-                item => Assert.Equal("Briarheart Burger", item.ToString()),
-                item => Assert.Equal("Small Fried Miraak", item.ToString())
-                );
-            menu = Menu.FilterByItemTypes(fullMenu, options);
+            var menu = Menu.FilterByItemTypes(fullMenu, options);
             Assert.Collection(menu,
                 item => Assert.Equal("Small Aretino Apple Juice", item.ToString()),
                 item => Assert.Equal("Briarheart Burger", item.ToString()),
